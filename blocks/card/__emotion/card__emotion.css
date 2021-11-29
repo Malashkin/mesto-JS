@@ -10,3 +10,12 @@
         margin-top: 6px;
     }
 }
+
+.card__emotion:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.card__emotion_active {
+    color: black;
+}

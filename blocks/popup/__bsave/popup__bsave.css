@@ -1,0 +1,32 @@
+.popup__bsave {
+    background: #000000;
+    border-radius: 2px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
+    width: 358px;
+    height: 50px;
+    margin: 48px auto 37px;
+    padding: 0;
+}
+
+.popup__bsave:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+    .popup__bsave {
+        width: 238px;
+        height: 46px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 17px;
+        letter-spacing: 0em;
+        margin-top: 42px;
+        margin-bottom: 26px;
+    }
+}
