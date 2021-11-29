@@ -1,9 +1,5 @@
 .profile__info {
     margin-left: 30px;
-}
-
-@media screen and (max-width: 700px) {
-    .profile__info {
-        margin-left: 42px;
-    }
+    display: grid;
+    grid-template-areas: "name name button" "spec spec .";
 }

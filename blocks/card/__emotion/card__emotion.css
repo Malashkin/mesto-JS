@@ -4,3 +4,9 @@
     margin-top: 8px;
     margin-right: 5px;
 }
+
+@media screen and (max-width: 700px) {
+    .card__emotion {
+        margin-top: 6px;
+    }
+}
