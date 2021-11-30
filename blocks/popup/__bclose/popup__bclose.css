@@ -1,9 +1,7 @@
 .popup__bclose {
-    position: absolute;
-    top: 152px;
-    right: 376px;
     background-color: black;
     border: none;
+    grid-area: bclose;
 }
 
 .popup__bclose:hover {
@@ -13,8 +11,8 @@
 
 @media screen and (max-width: 700px) {
     .popup__bclose {
-        top: 85px;
-        right: 13px;
+        justify-self: end;
+        margin-left: 256px;
     }
     .popup__bclose_img {
         height: 20px;
