@@ -1,4 +1,4 @@
-.profile__add {
+    .profile__add {
     border: 2px solid #FFFFFF;
     box-sizing: border-box;
     border-radius: 2px;
@@ -7,6 +7,9 @@
     height: 50px;
     cursor: pointer;
     margin-top: 11px;
+    background-image: url(../../../images/plusImg.svg);
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .profile__add:hover {
@@ -17,9 +20,5 @@
     .profile__add {
         width: 282px;
         margin-top: 34px;
+        background-size: 6%;
     }
-    .profile__add_img {
-        max-width: 16px;
-        max-height: 16px;
-    }
-}

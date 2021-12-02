@@ -1,7 +1,7 @@
-.profile__button {
+    .profile__button {
     width: 24px;
     height: 24px;
-    background-color: black;
+    background: none;
     border: 1px solid #FFFFFF;
     position: relative;
     z-index: 1;
@@ -11,15 +11,9 @@
     grid-area: button;
     align-self: center;
     margin-left: 18px;
-}
-
-.profile__button_img {
-    position: absolute;
-    z-index: 2;
-    max-height: 10px;
-    max-width: 10px;
-    top: 7px;
-    left: 7px;
+    background-image: url(../../../images/pen.svg);
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .profile__button:hover {
@@ -34,10 +28,3 @@
         margin-left: 0;
         padding: 0;
     }
-    .profile__button_img {
-        max-height: 8px;
-        max-width: 8px;
-        top: 4px;
-        left: 4px;
-    }
-}

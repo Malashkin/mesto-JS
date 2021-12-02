@@ -19,11 +19,11 @@
                     <img class="profile__avatar" src="images/image.jpg" alt="Аватар">
                     <div class="profile__info">
                         <p class="profile__name">Жак-Ив-Кусто</p>
-                        <button class="profile__button"><img class="profile__button_img" src="images/pen.svg"></button>
+                        <button class="profile__button"></button>
                         <p class="profile__spec ">Исследователь океана</p>
                     </div>
                 </div>
-                <button class="profile__add "><img class="profile__add_img" src="./images/plusImg.svg " alt="Добавить "></button>
+                <button class="profile__add"></button>
             </section>
             <section class="cards">
                 <ul class="card__list">
@@ -72,14 +72,14 @@
                 </ul>
             </section>
             <section class="popup popup_opened">
-                <div class="popup__content">
-                    <button class="popup__bclose"><img class="popup__bclose_img" src="images/Close Icon.svg"></button>
-                    <div class="popup__container">
+                <div id="formElement" class="popup__content">
+                    <button class="popup__bclose"></button>
+                    <form class="popup__container">
                         <h2 class="popup__title">Редактировать профиль</h2>
-                        <input class="popup__name" type="text" value="Жак-Ив-Кусто">
-                        <input class="popup__spec" type="text" value="Исследователь океана">
-                        <button class="popup__bsave">Сохранить</button>
-                    </div>
+                        <input id='nameInput' class="popup__name" type="text" value="Жак-Ив-Кусто">
+                        <input id='jobInput' class="popup__spec" type="text" value="Исследователь океана">
+                        <button id="bsave" type="submit" class="popup__bsave">Сохранить</button>
+                    </form>
                 </div>
             </section>
         </main>
@@ -87,6 +87,7 @@
             <p class="footer__copyright">© 2021 Mesto Russia</p>
         </footer>
     </div>
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>
