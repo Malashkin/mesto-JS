@@ -1,4 +1,4 @@
-    .profile__add {
+.profile__add {
     border: 2px solid #FFFFFF;
     box-sizing: border-box;
     border-radius: 2px;
@@ -7,6 +7,7 @@
     height: 50px;
     cursor: pointer;
     margin-top: 11px;
+    margin-left: 10px;
     background-image: url(../../../images/plusImg.svg);
     background-position: center;
     background-repeat: no-repeat;
@@ -22,3 +23,4 @@
         margin-top: 34px;
         background-size: 6%;
     }
+}
