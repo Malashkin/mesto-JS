@@ -1,4 +1,4 @@
-.card__emotion {
+.cards__emotion {
     max-height: 19px;
     max-width: 22px;
     margin-top: 8px;
@@ -6,16 +6,16 @@
 }
 
 @media screen and (max-width: 700px) {
-    .card__emotion {
+    .cards__emotion {
         margin-top: 6px;
     }
 }
 
-.card__emotion:hover {
+.cards__emotion:hover {
     opacity: 0.5;
     cursor: pointer;
 }
 
-.card__emotion_active {
+.cards__emotion_active {
     color: black;
 }

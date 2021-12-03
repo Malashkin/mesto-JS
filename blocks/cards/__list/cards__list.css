@@ -1,4 +1,4 @@
-.card__list {
+.cards__list {
     margin: 47px auto 0;
     padding: 0;
     display: grid;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 890px) {
-    .card__list {
+    .cards__list {
         grid-template-rows: repeat(auto-fill, max-content);
         grid-template-columns: repeat(2, max-content);
         justify-content: center;
@@ -19,7 +19,7 @@
 }
 
 @media screen and (max-width: 600px) {
-    .card__list {
+    .cards__list {
         grid-template-columns: repeat(1, max-content);
         margin-top: 36px;
     }
