@@ -5,6 +5,8 @@ const closeModal = document.querySelector('.popup__close');
 
 function openModal() {
     show.classList.remove('popup');
+    profileName = nameInput;
+    profileJob = jobInput;
 }
 
 function close() {
