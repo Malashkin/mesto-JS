@@ -5,4 +5,11 @@
     min-width: 320px;
     position: relative;
     z-index: 2;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 890px) {
+    .body {
+        max-width: 700px;
+    }
 }

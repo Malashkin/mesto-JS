@@ -1,4 +1,4 @@
-.popup__bclose {
+.popup__close {
     background: none;
     border: none;
     grid-area: bclose;
@@ -10,17 +10,15 @@
     padding: 0;
 }
 
-.popup__bclose:hover {
-    opacity: 0.8;
+.popup__close:hover {
+    opacity: 0.6;
     cursor: pointer;
 }
 
 @media screen and (max-width: 700px) {
-    .popup__bclose {
+    .popup__close {
         justify-self: end;
         margin-left: 256px;
-    }
-    .popup__bclose-img {
         height: 20px;
         width: 20px;
     }

@@ -18,12 +18,12 @@
                 <div class="profile__card">
                     <img class="profile__avatar" src="images/image.jpg" alt="Аватар">
                     <div class="profile__info">
-                        <p class="profile__name">Жак-Ив-Кусто</p>
-                        <button class="profile__button"></button>
-                        <p class="profile__spec ">Исследователь океана</p>
+                        <h1 class="profile__name">Жак-Ив-Кусто</h1>
+                        <button class="profile__button" type="button"></button>
+                        <p class="profile__spec">Исследователь океана</p>
                     </div>
                 </div>
-                <button class="profile__add"></button>
+                <button class="profile__add" type="button"></button>
             </section>
             <section class="cards">
                 <ul class="cards__list">
@@ -31,61 +31,61 @@
                         <img class="cards__image" src="images/karachaevsk.jpg" alt="Изображение Карачаевск">
                         <div class="cards__description">
                             <h2 class="cards__title">Карачаевск</h2>
-                            <img class="cards__emotion cards__emotion_active" src="images/like.svg" alt="Лайк">
+                            <button class="cards__emotion cards__emotion_active" type="button"></button>
                         </div>
                     </li>
                     <li class="cards__conteiner">
                         <img class="cards__image" src="images/Elbrus.jpg" alt="Изображение Эльбрус">
                         <div class="cards__description">
                             <h2 class="cards__title">Гора Эльбрус</h2>
-                            <img class="cards__emotion cards__emotion_active" src="images/like.svg" alt="Лайк">
+                            <button class="cards__emotion cards__emotion_active" type="button"></button>
                         </div>
                     </li>
                     <li class="cards__conteiner">
                         <img class="cards__image" src="images/Dombau.jpg" alt="Изображение Домбай">
                         <div class="cards__description">
                             <h2 class="cards__title">Домбай</h2>
-                            <img class="cards__emotion cards__emotion_active" src="images/like.svg" alt="Лайк">
+                            <button class="cards__emotion cards__emotion_active" type="button"></button>
                         </div>
                     </li>
                     <li class="cards__conteiner">
                         <img class="cards__image" src="images/Elbrus.jpg" alt="Изображение Эльбрус">
                         <div class="cards__description">
                             <h2 class="cards__title">Гора Эльбрус</h2>
-                            <img class="cards__emotion cards__emotion_active" src="images/like.svg" alt="Лайк">
+                            <button class="cards__emotion cards__emotion_active" type="button"></button>
                         </div>
                     </li>
                     <li class="cards__conteiner">
                         <img class="cards__image" src="images/Dombau.jpg" alt="Изображение Домбай">
                         <div class="cards__description">
                             <h2 class="cards__title">Домбай</h2>
-                            <img class="cards__emotion cards__emotion_active" src="images/like.svg" alt="Лайк">
+                            <button class="cards__emotion cards__emotion_active" type="button"></button>
                         </div>
                     </li>
                     <li class="cards__conteiner">
                         <img class="cards__image" src="images/karachaevsk.jpg" alt="Изображение Карачаевск">
                         <div class="cards__description">
                             <h2 class="cards__title">Карачаевск</h2>
-                            <img class="cards__emotion cards__emotion_active" src="images/like.svg" alt="Лайк">
+                            <button class="cards__emotion cards__emotion_active" type="button"></button>
                         </div>
                     </li>
                 </ul>
-            </section>
-            <section class="popup popup_opened">
-                <div id="formElement" class="popup__content">
-                    <button class="popup__bclose"></button>
-                    <form class="popup__container">
-                        <h2 class="popup__title">Редактировать профиль</h2>
-                        <input id='nameInput' class="popup__name" type="text" value="Жак-Ив-Кусто">
-                        <input id='jobInput' class="popup__spec" type="text" value="Исследователь океана">
-                        <button id="bsave" type="submit" class="popup__bsave">Сохранить</button>
-                    </form>
-                </div>
             </section>
         </main>
         <footer class="footer">
             <p class="footer__copyright">© 2021 Mesto Russia</p>
         </footer>
+        <div class="popup popup_opened">
+            <div id="formElement" class="popup__content">
+                <button class="popup__close" type="button"></button>
+                <form class="popup__container" name="form">
+                    <h2 class="popup__title">Редактировать профиль</h2>
+                    <input class="popup__text popup__text-name" type="text" placeholder="Жак-Ив-Кусто" name="name">
+                    <input class="popup__text popup__text-spec" type="text" placeholder="Исследователь океана" name="job">
+                    <button type="submit" class="popup__bsave">Сохранить</button>
+                </form>
+            </div>
+        </div>
     </div>
     <script src="scripts/script.js"></script>
 </body>

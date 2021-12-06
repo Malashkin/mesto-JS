@@ -10,8 +10,9 @@
 
 @media screen and (max-width: 700px) {
     .popup__content {
-        top: 84px;
+        top: 62px;
         left: calc(100%/2 - 282px/2);
         grid-template-areas: "bclose" "form";
+        gap: 0;
     }
 }
