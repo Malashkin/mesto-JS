@@ -7,8 +7,6 @@ let profileJob = document.querySelector('.profile__spec');
 
 function openModal() {
     show.classList.remove('popup');
-    profileName = nameInput;
-    profileJob = jobInput;
 }
 
 function close() {
