@@ -26,6 +26,4 @@ function submitFormHandler(evt) {
     close();
 }
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', submitFormHandler);
