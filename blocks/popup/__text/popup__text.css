@@ -8,26 +8,17 @@
     width: 358px;
     letter-spacing: 0em;
     text-align: left;
+    padding: 7px 0;
+    margin: 0 auto 33px;
 }
 
-.popup__text-spec {
-    margin: 22px auto 0;
-    padding: 10px 0;
-}
-
-.popup__text-name {
-    margin: 66px auto 0;
-    padding: 8px 0;
+.popup__text:last-of-type {
+    margin-bottom: 0;
 }
 
 @media screen and (max-width: 700px) {
     .popup__text {
         width: 238px;
     }
-    .popup__name {
-        margin: 68px auto 0;
-    }
-    .popup__spec {
-        margin: 21px auto 0;
-    }
+    .popup__text:last-of-type {}
 }

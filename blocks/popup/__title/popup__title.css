@@ -3,9 +3,10 @@
     font-weight: 900;
     font-size: 24px;
     line-height: 29px;
-    margin: 34px 36px 0;
+    margin: 34px auto 46px;
     padding: 0;
-    width: 358px;
+    max-width: 358px;
+    width: 100%;
 }
 
 @media screen and (max-width: 700px) {
@@ -14,7 +15,7 @@
         line-height: 22px;
         letter-spacing: 0em;
         text-align: left;
-        width: 238px;
-        margin: 26px auto 0;
+        max-width: 238px;
+        margin: 26px auto 75px;
     }
 }

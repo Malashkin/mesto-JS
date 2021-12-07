@@ -14,6 +14,7 @@
         background-image: url(../../../images/pen.svg);
         background-repeat: no-repeat;
         background-position: center;
+        padding: 0;
     }
     
     .profile__button:hover {
@@ -26,6 +27,5 @@
             height: 18px;
             margin-top: 14px;
             margin-left: 0;
-            padding: 0;
         }
     }

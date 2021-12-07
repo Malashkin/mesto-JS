@@ -1,6 +1,7 @@
 .popup__bsave {
     background: #000000;
     border: none;
+    border-radius: 2px;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
