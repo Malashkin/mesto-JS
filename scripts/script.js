@@ -1,29 +1,24 @@
-const edit = document.querySelector('.profile__button');
-const show = document.querySelector('.popup');
+const editButton = document.querySelector('.profile__button');
+const show = document.getElementById('popupEdit');
 const closeModal = show.querySelector('.popup__close');
-const formElement = document.querySelector('.popup__container');
+const formEdit = document.querySelector('.popup__container');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__spec');
 const nameInput = document.querySelector('.popup__text_type_name');
 const jobInput = document.querySelector('.popup__text_type_job');
 const formContainer = document.querySelector('.cards')
-const container = formContainer.querySelector('.cards__conteiner')
 const addButton = document.querySelector('.profile__add')
+const addButtonSave = document.getElementById('saveAdded')
+const addModal = document.getElementById('popupAdd')
 const cards = document.querySelector('.cards')
+const submitAdd = document.getElementById('saveAdded')
 const initialContent = document.querySelector('.cards__list').content;
-
-
-/*addButton.addEventListener('click', e => {
-        e.preventDefault()
-        const newItem = container.cloneNode(false).content;
-        const newItemTitle = ;
-        const newItemPicture = ;
-
-        console.log({ newItem });
-    }); */
-
-
-
+const initialCardLink = document.querySelector('.cards__image');
+const initialCardTitle = document.querySelector('.cards__title');
+const closeAddModal = document.getElementById('addClose');
+const ItemImage = document.querySelector('.popup__text_type_image');
+const ItemTitle = document.querySelector('.popup__text_type_title');
+const formAdd = document.querySelector('.popup__container_type_add')
 const initialCards = [{
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -58,30 +53,52 @@ function initialData(card) {
     const initialCard = initialContent.querySelector('.cards__conteiner').cloneNode(true);
     initialCard.querySelector('.cards__image').src = card.link
     initialCard.querySelector('.cards__title').textContent = card.name;
-    cards.append(initialCard)
+    cards.prepend(initialCard)
 }
 
-// НАЧАТЬ С ПЕРЕЧИТЫВАНИЯ createElement  
+function submitFormHandlerAdd(evt) {
+    evt.preventDefault();
+    const newItem = initialContent.querySelector('.cards__conteiner').cloneNode(true);
+    newItem.querySelector('.cards__title').textContent = ItemTitle.value;
+    newItem.querySelector('.cards__image').src = ItemImage.value;
+    newItem.querySelector('.cards__image').alt = ItemTitle.value;
+    cards.prepend(newItem)
+    formAdd.reset()
+    closeAddedModal()
+    console.log({ newItem });
+}
 
 
-
-function openModal() {
+function openEditModal() {
     show.classList.remove('popup');
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 }
 
-function close() {
+function closeEditModal() {
     show.classList.add('popup');
 }
 
-function submitFormHandler(evt) {
+function submitFormHandlerEdit(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    close();
+    closeEditModal();
 }
 
-edit.addEventListener('click', openModal);
-closeModal.addEventListener('click', close);
-formElement.addEventListener('submit', submitFormHandler);
+function openAddModal() {
+    addModal.classList.remove('popup');
+}
+
+function closeAddedModal() {
+    addModal.classList.add('popup');
+}
+
+
+
+editButton.addEventListener('click', openEditModal);
+closeModal.addEventListener('click', closeEditModal);
+formEdit.addEventListener('submit', submitFormHandlerEdit);
+addButton.addEventListener('click', openAddModal);
+closeAddModal.addEventListener('click', closeAddedModal);
+formAdd.addEventListener('submit', submitFormHandlerAdd)

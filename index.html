@@ -33,33 +33,33 @@
         </footer>
         <template class="cards__list">
             <div class="cards__conteiner">
-                <img class="cards__image" alt="Изображение">
+                <img class="cards__image" src="" alt="Изображение">
                 <div class="cards__description">
                     <h2 class="cards__title"></h2>
                     <button class="cards__emotion cards__emotion_active" type="button"></button>
                 </div>
             </div>
         </template>
-        <div class="popup popup_opened">
-            <div id="popupEdit" class="popup__content">
+        <div id='popupEdit' class="popup popup_opened">
+            <div class="popup__content">
                 <button class="popup__close" type="button"></button>
-                <form class="popup__container" name="form">
+                <form class="popup__container popup__container_type_edit" name="formEdit">
                     <h2 class="popup__title">Редактировать профиль</h2>
                     <input class="popup__text popup__text_type_name" type="text" placeholder="Жак-Ив-Кусто" name="name">
                     <input class="popup__text popup__text_type_job" type="text" placeholder="Исследователь океана" name="job">
                     <button type="submit" class="popup__bsave">Сохранить</button>
                 </form>
             </div>
-            <div class="popup popup_opened">
-                <div id="popupAdd" class="popup__content">
-                    <button class="popup__close" type="button"></button>
-                    <form class="popup__container" name="form">
-                        <h2 class="popup__title">Новое место</h2>
-                        <input class="popup__text popup__text_type_name" type="text" placeholder="Название" name="place">
-                        <input class="popup__text popup__text_type_job" type="text" placeholder="Ссылка" name="link">
-                        <button type="submit" class="popup__bsave">Сохранить</button>
-                    </form>
-                </div>
+        </div>
+        <div id='popupAdd' class="popup popup_opened">
+            <div class="popup__content">
+                <button id="addClose" class="popup__close" type="button"></button>
+                <form class="popup__container popup__container_type_add" id="formAdd">
+                    <h2 class="popup__title">Новое место</h2>
+                    <input class="popup__text popup__text_type_title" type="text" placeholder="Название" name="place">
+                    <input class="popup__text popup__text_type_image" type="text" placeholder="Ссылка на картинку" name="link">
+                    <button id="saveAdded" type="submit" class="popup__bsave">Сохранить</button>
+                </form>
             </div>
         </div>
         <script src="scripts/script.js"></script>
