@@ -1,6 +1,6 @@
 .cards__emotion {
-    height: 19px;
-    width: 22px;
+    min-height: 19px;
+    min-width: 22px;
     margin-top: 8px;
     margin-right: 5px;
     background-image: url(../../../images/like.svg);
