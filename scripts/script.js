@@ -19,6 +19,10 @@ const closeAddModal = document.getElementById('addClose');
 const ItemImage = document.querySelector('.popup__text_type_image');
 const ItemTitle = document.querySelector('.popup__text_type_title');
 const formAdd = document.querySelector('.popup__container_type_add');
+const popupImage = document.querySelector('.popup__image');
+const popupZoom = document.getElementById('popupImage')
+let popupSubtitle = document.querySelector('.popup__subtitle')
+const popupZoomClose = document.getElementById('popupImageClose')
 const initialCards = [{
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -53,6 +57,7 @@ function initialData(card) {
     const initialCard = initialContent.querySelector('.cards__conteiner').cloneNode(true);
     const initialLike = initialCard.querySelector('.cards__emotion');
     const initialDelete = initialCard.querySelector('.cards__trashicon')
+    const initialZoom = initialCard.querySelector('.cards__image')
     initialCard.querySelector('.cards__image').src = card.link
     initialCard.querySelector('.cards__title').textContent = card.name;
     initialCard.querySelector('.cards__image').alt = card.name;
@@ -62,8 +67,18 @@ function initialData(card) {
     initialDelete.addEventListener('click', function initialDel() {
         initialDelete.closest('.cards__conteiner').remove();
     })
+
+    function openPopupZoom() {
+        popupZoom.classList.remove('popup');
+        popupImage.src = initialCard.querySelector('.cards__image').src;
+        popupImage.alt = initialCard.querySelector('.cards__title').textContent;
+        popupSubtitle.textContent = initialCard.querySelector('.cards__title').textContent;
+    }
+    initialZoom.addEventListener('click', openPopupZoom);
     cards.prepend(initialCard)
 };
+
+
 
 
 
@@ -71,7 +86,8 @@ function submitFormHandlerAdd(evt) {
     evt.preventDefault();
     const newItem = initialContent.querySelector('.cards__conteiner').cloneNode(true);
     const likeButton = newItem.querySelector('.cards__emotion');
-    const newItemDelete = newItem.querySelector('.cards__trashicon')
+    const newItemDelete = newItem.querySelector('.cards__trashicon');
+    const newItemZoom = newItem.querySelector('.cards__image');
     newItem.querySelector('.cards__title').textContent = ItemTitle.value;
     newItem.querySelector('.cards__image').src = ItemImage.value;
     newItem.querySelector('.cards__image').alt = ItemTitle.value;
@@ -81,6 +97,14 @@ function submitFormHandlerAdd(evt) {
     newItemDelete.addEventListener('click', function newItemDel() {
         newItemDelete.closest('.cards__conteiner').remove();
     })
+
+    function ItemZoom() {
+        popupZoom.classList.remove('popup');
+        popupImage.src = newItem.querySelector('.cards__image').src;
+        popupImage.alt = newItem.querySelector('.cards__title').textContent;
+        popupSubtitle.textContent = newItem.querySelector('.cards__title').textContent;
+    }
+    newItemZoom.addEventListener('click', ItemZoom);
     cards.prepend(newItem);
     formAdd.reset();
     closeAddedModal()
@@ -112,10 +136,8 @@ function closeAddedModal() {
     addModal.classList.add('popup');
 };
 
-
-
-function clickLike() {
-    console.log('fuck');
+function closeZoomPopup() {
+    popupZoom.classList.add('popup');
 }
 
 editButton.addEventListener('click', openEditModal);
@@ -124,3 +146,4 @@ formEdit.addEventListener('submit', submitFormHandlerEdit);
 addButton.addEventListener('click', openAddModal);
 closeAddModal.addEventListener('click', closeAddedModal);
 formAdd.addEventListener('submit', submitFormHandlerAdd);
+popupZoomClose.addEventListener('click', closeZoomPopup);
