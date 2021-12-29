@@ -1,6 +1,6 @@
 .popup__content_zoom {
     display: grid;
-    grid-template-areas: ". . bclose" ". img ." "subtitle . .";
+    grid-template-areas: ". . bclose" ". img ." ". subtitle .";
     align-self: start;
     max-width: max-content;
     margin: 0 auto;
