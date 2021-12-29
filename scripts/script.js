@@ -6,15 +6,10 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__spec');
 const nameInput = document.querySelector('.popup__text_type_name');
 const jobInput = document.querySelector('.popup__text_type_job');
-const formContainer = document.querySelector('.cards');
 const addButton = document.querySelector('.profile__add');
-const addButtonSave = document.getElementById('saveAdded');
 const addModal = document.getElementById('popupAdd');
 const cards = document.querySelector('.cards');
-const submitAdd = document.getElementById('saveAdded');
 const initialContent = document.querySelector('.cards__list').content;
-const initialCardLink = document.querySelector('.cards__image');
-const initialCardTitle = document.querySelector('.cards__title');
 const closeAddModal = document.getElementById('addClose');
 const ItemImage = document.querySelector('.popup__text_type_image');
 const ItemTitle = document.querySelector('.popup__text_type_title');
@@ -78,10 +73,6 @@ function initialData(card) {
     cards.prepend(initialCard)
 };
 
-
-
-
-
 function submitFormHandlerAdd(evt) {
     evt.preventDefault();
     const newItem = initialContent.querySelector('.cards__conteiner').cloneNode(true);
@@ -109,7 +100,6 @@ function submitFormHandlerAdd(evt) {
     formAdd.reset();
     closeAddedModal()
 };
-
 
 function submitFormHandlerEdit(evt) {
     evt.preventDefault();
