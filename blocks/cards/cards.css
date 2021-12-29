@@ -2,15 +2,6 @@
     max-width: 880px;
     max-height: max-content;
     margin: 54px auto 0;
-}
-
-@media screen and (max-width: 700px) {
-    .cards {
-        margin-top: 37px;
-    }
-}
-
-.cards {
     margin: 47px auto 0;
     padding: 0;
     display: grid;
@@ -27,6 +18,12 @@
         grid-template-rows: repeat(auto-fill, max-content);
         grid-template-columns: repeat(2, max-content);
         justify-content: center;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .cards {
+        margin-top: 37px;
     }
 }
 
