@@ -1,6 +1,6 @@
 const editButton = document.querySelector('.profile__button');
-const show = document.getElementById('popupEdit');
-const closeModal = show.querySelector('.popup__close');
+const editModal = document.getElementById('popupEdit');
+const closeModalEdit = editModal.querySelector('.popup__close');
 const formEdit = document.querySelector('.popup__container');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__spec');
@@ -18,6 +18,8 @@ const popupImage = document.querySelector('.popup__image');
 const popupZoom = document.getElementById('popupImage')
 let popupSubtitle = document.querySelector('.popup__subtitle')
 const popupZoomClose = document.getElementById('popupImageClose')
+const elementCard = document.querySelector('.cards__conteiner');
+
 const initialCards = [{
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -44,34 +46,51 @@ const initialCards = [{
     }
 ];
 
-initialCards.forEach(function(card) {
-    initialData(card)
-});
+function addCard(card) {
+    cards.prepend(card);
+}
+
+function cardForEach(array) {
+    array.forEach((item) => addCard(initialData(item)))
+};
+
+cardForEach(initialCards);
+
+
+const initialZoom = document.querySelector('.cards__image')
+const initialSubtitle = cards.querySelector('.cards__title')
+
+function openPopupZoom() {
+    popupZoom.classList.remove('popup');
+    popupImage.src = initialZoom.src;
+    popupSubtitle.textContent = initialSubtitle.textContent
+}
+console.log(initialZoom.hasAttribute('src'));
+initialZoom.addEventListener('click', console.log('fuck'))
 
 function initialData(card) {
     const initialCard = initialContent.querySelector('.cards__conteiner').cloneNode(true);
-    const initialLike = initialCard.querySelector('.cards__emotion');
-    const initialDelete = initialCard.querySelector('.cards__trashicon')
-    const initialZoom = initialCard.querySelector('.cards__image')
+    const initialDelete = initialCard.querySelector('.cards__trashicon');;
     initialCard.querySelector('.cards__image').src = card.link
     initialCard.querySelector('.cards__title').textContent = card.name;
     initialCard.querySelector('.cards__image').alt = card.name;
-    initialLike.addEventListener('click', function clickLike() {
-        initialLike.classList.toggle('cards__emotion_active')
-    });
     initialDelete.addEventListener('click', function initialDel() {
         initialDelete.closest('.cards__conteiner').remove();
-    })
+    });
 
-    function openPopupZoom() {
-        popupZoom.classList.remove('popup');
-        popupImage.src = initialCard.querySelector('.cards__image').src;
-        popupImage.alt = initialCard.querySelector('.cards__title').textContent;
-        popupSubtitle.textContent = initialCard.querySelector('.cards__title').textContent;
-    }
-    initialZoom.addEventListener('click', openPopupZoom);
-    cards.prepend(initialCard)
-};
+    return initialCard
+}
+
+
+
+const initialLike = document.querySelectorAll('.cards__emotion');
+
+initialLike.forEach(function(e) {
+    e.addEventListener('click', function(evt) {
+        evt.target.classList.toggle('cards__emotion_active')
+    })
+})
+
 
 function submitFormHandlerAdd(evt) {
     evt.preventDefault();
@@ -82,9 +101,9 @@ function submitFormHandlerAdd(evt) {
     newItem.querySelector('.cards__title').textContent = ItemTitle.value;
     newItem.querySelector('.cards__image').src = ItemImage.value;
     newItem.querySelector('.cards__image').alt = ItemTitle.value;
-    likeButton.addEventListener('click', function newLike() {
+    /* likeButton.addEventListener('click', function newLike() {
         likeButton.classList.toggle('cards__emotion_active')
-    });
+    });*/
     newItemDelete.addEventListener('click', function newItemDel() {
         newItemDelete.closest('.cards__conteiner').remove();
     })
@@ -98,6 +117,7 @@ function submitFormHandlerAdd(evt) {
     newItemZoom.addEventListener('click', ItemZoom);
     cards.prepend(newItem);
     formAdd.reset();
+    initialData(newItem)
     closeAddedModal()
 };
 
@@ -109,13 +129,13 @@ function submitFormHandlerEdit(evt) {
 };
 
 function openEditModal() {
-    show.classList.remove('popup');
+    editModal.classList.remove('popup');
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 };
 
 function closeEditModal() {
-    show.classList.add('popup');
+    editModal.classList.add('popup');
 };
 
 function openAddModal() {
@@ -131,7 +151,7 @@ function closeZoomPopup() {
 }
 
 editButton.addEventListener('click', openEditModal);
-closeModal.addEventListener('click', closeEditModal);
+closeModalEdit.addEventListener('click', closeEditModal);
 formEdit.addEventListener('submit', submitFormHandlerEdit);
 addButton.addEventListener('click', openAddModal);
 closeAddModal.addEventListener('click', closeAddedModal);
