@@ -120,3 +120,4 @@ editButton.addEventListener('click', openEditModal);
 formEdit.addEventListener('submit', submitFormHandlerEdit);
 addButton.addEventListener('click', openAddModal);
 formAdd.addEventListener('submit', submitFormHandlerAdd);
+addfunction
