@@ -1,24 +1,29 @@
 const editButton = document.querySelector('.profile__button');
-const editModal = document.getElementById('popupEdit');
+const editModal = document.querySelector('#popupEdit');
 const closeModalEdit = editModal.querySelector('.popup__close');
-const formEdit = document.querySelector('.popup__container');
+const formEdit = document.querySelector('.popup__container_type_edit');
+const formAdd = document.querySelector('.popup__container_type_add')
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__spec');
 const nameInput = document.querySelector('.popup__text_type_name');
 const jobInput = document.querySelector('.popup__text_type_job');
 const addButton = document.querySelector('.profile__add');
-const addModal = document.getElementById('popupAdd');
+const addModal = document.querySelector('#popupAdd');
 const cards = document.querySelector('.cards');
 const initialContent = document.querySelector('.cards__list').content;
-const closeAddModal = document.getElementById('addClose');
+const initialZoom = document.querySelector('.cards__image')
+const initialSubtitle = cards.querySelector('.cards__title')
+const closeAddModal = document.querySelector('#addClose');
 const ItemImage = document.querySelector('.popup__text_type_image');
 const ItemTitle = document.querySelector('.popup__text_type_title');
-const formAdd = document.querySelector('.popup__container_type_add');
 const popupImage = document.querySelector('.popup__image');
-const popupZoom = document.getElementById('popupImage')
-let popupSubtitle = document.querySelector('.popup__subtitle')
-const popupZoomClose = document.getElementById('popupImageClose')
+const popupZoom = document.querySelector('#popupImage')
+const popupSubtitle = document.querySelector('.popup__subtitle')
+const popupZoomClose = document.querySelector('#popupImageClose')
 const elementCard = document.querySelector('.cards__conteiner');
+const cardList = document.querySelector('.cards__list').content
+
+
 
 const initialCards = [{
         name: 'Архыз',
@@ -47,26 +52,20 @@ const initialCards = [{
 ];
 
 function addCard(card) {
-    cards.prepend(card);
+    cardList.prepend(card);
 }
 
 function cardForEach(array) {
-    array.forEach((item) => addCard(initialData(item)))
+    array.forEach((card) => addNewCard(addCard(card)))
 };
 
-cardForEach(initialCards);
-
-
-const initialZoom = document.querySelector('.cards__image')
-const initialSubtitle = cards.querySelector('.cards__title')
-
+/*
 function openPopupZoom() {
     popupZoom.classList.remove('popup');
     popupImage.src = initialZoom.src;
     popupSubtitle.textContent = initialSubtitle.textContent
 }
-console.log(initialZoom.hasAttribute('src'));
-initialZoom.addEventListener('click', console.log('fuck'))
+
 
 function initialData(card) {
     const initialCard = initialContent.querySelector('.cards__conteiner').cloneNode(true);
@@ -90,36 +89,49 @@ initialLike.forEach(function(e) {
         evt.target.classList.toggle('cards__emotion_active')
     })
 })
+*/
+function addNewCard(card) {
+    const cardItem = cardList.querySelector('.cards__conteiner').cloneNode(true)
+    const cardsImage = cardItem.querySelector('.cards__image')
+    const cardsTitle = cardItem.querySelector('.cards__title')
+    const cardsLike = cardItem.querySelector('.cards__emotion')
+    const cardsDel = cardItem.querySelector('.cards__trashicon')
+    cardsImage.src = card.link
+    cardsImage.src = card.alt
+    cardsTitle.textContent = card.name
+    cardsLike.addEventListener('click', addLike)
+    cardsDel.addEventListener('click', cardDel)
 
+    return card
+}
+addCard(addNewCard(initialCards))
+
+function addLike(evt) {
+    const eventTarget = evt.target;
+    eventTarget.classList.toggle('cards__emotion_active')
+}
+
+function cardDel(evt) {
+    const eventTarget = evt.target
+    eventTarget.closest('.cards__conteiner').remove()
+}
+
+function Zoom(title, link) {
+    popupSubtitle.textContent = title
+    popupImage.src = link
+    openModal()
+}
 
 function submitFormHandlerAdd(evt) {
-    evt.preventDefault();
-    const newItem = initialContent.querySelector('.cards__conteiner').cloneNode(true);
-    const likeButton = newItem.querySelector('.cards__emotion');
-    const newItemDelete = newItem.querySelector('.cards__trashicon');
-    const newItemZoom = newItem.querySelector('.cards__image');
-    newItem.querySelector('.cards__title').textContent = ItemTitle.value;
-    newItem.querySelector('.cards__image').src = ItemImage.value;
-    newItem.querySelector('.cards__image').alt = ItemTitle.value;
-    /* likeButton.addEventListener('click', function newLike() {
-        likeButton.classList.toggle('cards__emotion_active')
-    });*/
-    newItemDelete.addEventListener('click', function newItemDel() {
-        newItemDelete.closest('.cards__conteiner').remove();
-    })
-
-    function ItemZoom() {
-        popupZoom.classList.remove('popup');
-        popupImage.src = newItem.querySelector('.cards__image').src;
-        popupImage.alt = newItem.querySelector('.cards__title').textContent;
-        popupSubtitle.textContent = newItem.querySelector('.cards__title').textContent;
-    }
-    newItemZoom.addEventListener('click', ItemZoom);
-    cards.prepend(newItem);
-    formAdd.reset();
-    initialData(newItem)
+    evt.preventDefault()
+    const card = {
+        name: popupImage.value,
+        link: popupImage.value,
+    };
+    addNewCard(addCard(card))
     closeAddedModal()
-};
+    formAdd.reset();
+}
 
 function submitFormHandlerEdit(evt) {
     evt.preventDefault();
@@ -138,7 +150,7 @@ function closeEditModal() {
     editModal.classList.add('popup');
 };
 
-function openAddModal() {
+function openModal() {
     addModal.classList.remove('popup');
 };
 
@@ -150,10 +162,13 @@ function closeZoomPopup() {
     popupZoom.classList.add('popup');
 }
 
+addCard(initialCards)
+
 editButton.addEventListener('click', openEditModal);
 closeModalEdit.addEventListener('click', closeEditModal);
 formEdit.addEventListener('submit', submitFormHandlerEdit);
-addButton.addEventListener('click', openAddModal);
+formAdd.addEventListener('submit', submitFormHandlerAdd)
+addButton.addEventListener('click', openModal);
 closeAddModal.addEventListener('click', closeAddedModal);
-formAdd.addEventListener('submit', submitFormHandlerAdd);
 popupZoomClose.addEventListener('click', closeZoomPopup);
+//cardsZoom.addEventListener('click', () => Zoom(card.name, card.link))
