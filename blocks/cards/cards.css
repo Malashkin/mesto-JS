@@ -1,7 +1,7 @@
 .cards {
     max-width: 880px;
     max-height: max-content;
-    min-height: 25vh;
+    margin: 54px auto 0;
     margin: 47px auto 0;
     padding: 0;
     display: grid;
@@ -9,6 +9,7 @@
     grid-template-columns: repeat(3, max-content);
     grid-column-gap: 17px;
     grid-row-gap: 20px;
+    justify-content: center;
     list-style-type: none;
 }
 
@@ -16,13 +17,13 @@
     .cards {
         grid-template-rows: repeat(auto-fill, max-content);
         grid-template-columns: repeat(2, max-content);
+        justify-content: center;
     }
 }
 
 @media screen and (max-width: 700px) {
     .cards {
         margin-top: 37px;
-        margin-left: 25px;
     }
 }
 
