@@ -59,6 +59,7 @@ function createNewCard(card) {
     cardItem.querySelector('.cards__title').textContent = card.name;
     cardButtonLike.addEventListener('click', cardLike);
     cardButtonDelete.addEventListener('click', cardDelete);
+    cardsImageClone.addEventListener('click', () => openPopupZoom(card.link, card.name));
     return cardItem;
 };
 
@@ -66,8 +67,9 @@ function addNewCard(card) {
     cards.prepend(card);
 };
 
-
-addNewCard(createNewCard(initialCards))
+initialCards.forEach((item) => {
+    addNewCard(createNewCard(item));
+});
 
 function submitFormHandlerAdd(evt) {
     evt.preventDefault();
@@ -78,7 +80,6 @@ function submitFormHandlerAdd(evt) {
     addNewCard(createNewCard(newCard))
     closePopup(popupAdd)
     formAdd.reset();
-
 };
 
 
@@ -99,23 +100,30 @@ function submitFormHandlerEdit(evt) {
 };
 
 function openEditModal() {
-    popupEdit.classList.remove('popup');
+    popupEdit.classList.add('popup_type_opened');
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 };
 
-function openAddModal() {
-    popupAdd.classList.remove('popup');
+function openPopupZoom(link, name) {
+    popupImage.src = link;
+    popupImage.alt = name;
+    popupSubtitle.textContent = name;
+    openPopup(popupZoom);
+};
+
+function openPopup(popup) {
+    popup.classList.add('popup_type_opened');
 };
 
 function closePopup(popup) {
-    popup.classList.add('popup')
+    popup.classList.remove('popup_type_opened')
 }
 
-buttonClosePopupAdd.addEventListener('click', () => closePopup(popupAdd));
+buttonClosePopupAdd.addEventListener('click', console.log('click'));
 buttonClosePopupEdit.addEventListener('click', () => closePopup(popupEdit));
 buttonClosePopupZoom.addEventListener('click', () => closePopup(popupZoom));
-editButton.addEventListener('click', openEditModal);
+editButton.addEventListener('click', () => openPopup(popupEdit));
 formEdit.addEventListener('submit', submitFormHandlerEdit);
-addButton.addEventListener('click', openAddModal);
+addButton.addEventListener('click', () => openPopup(popupAdd));
 formAdd.addEventListener('submit', submitFormHandlerAdd);
