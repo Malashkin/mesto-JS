@@ -5,22 +5,19 @@ const popupAdd = document.querySelector('#popupAdd');
 const buttonClosePopupAdd = document.querySelector('.popup__close_add');
 const buttonClosePopupEdit = document.querySelector('.popup__close_edit');
 const buttonClosePopupZoom = document.querySelector('.popup__close_zoom');
-const buttonLike = document.querySelector('.cards__emotion');
 const formEdit = document.querySelector('.popup__container');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__spec');
 const nameInput = document.querySelector('.popup__text_type_name');
 const jobInput = document.querySelector('.popup__text_type_job');
 const addButton = document.querySelector('.profile__add');
-const cards = document.querySelector('.cards__list');
+const cards = document.querySelector('.cards');
 const content = document.querySelector('.cards__list').content;
-const closeAddModal = document.querySelector('#addClose');
 const ItemImage = document.querySelector('.popup__text_type_image');
 const ItemTitle = document.querySelector('.popup__text_type_title');
 const formAdd = document.querySelector('.popup__container_type_add');
 const popupImage = document.querySelector('.popup__image');
 const popupSubtitle = document.querySelector('.popup__subtitle')
-const popupZoomClose = document.querySelector('#popupImageClose')
 const initialCards = [{
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -120,7 +117,7 @@ function closePopup(popup) {
     popup.classList.remove('popup_type_opened')
 }
 
-buttonClosePopupAdd.addEventListener('click', console.log('click'));
+buttonClosePopupAdd.addEventListener('click', () => closePopup(popupAdd));
 buttonClosePopupEdit.addEventListener('click', () => closePopup(popupEdit));
 buttonClosePopupZoom.addEventListener('click', () => closePopup(popupZoom));
 editButton.addEventListener('click', () => openPopup(popupEdit));
