@@ -12,7 +12,7 @@ const profileJob = document.querySelector('.profile__spec');
 const nameInput = document.querySelector('.popup__text_type_name');
 const jobInput = document.querySelector('.popup__text_type_job');
 const addButton = document.querySelector('.profile__add');
-const cards = document.querySelector('.cards__conteiner');
+const cards = document.querySelector('.cards__list');
 const content = document.querySelector('.cards__list').content;
 const closeAddModal = document.querySelector('#addClose');
 const ItemImage = document.querySelector('.popup__text_type_image');
@@ -59,18 +59,13 @@ function createNewCard(card) {
     cardItem.querySelector('.cards__title').textContent = card.name;
     cardButtonLike.addEventListener('click', cardLike);
     cardButtonDelete.addEventListener('click', cardDelete);
-
     return cardItem;
 };
-console.log(addNewCard(createNewCard(initialCards)));
 
 function addNewCard(card) {
-    content.prepend(card);
+    cards.prepend(card);
 };
 
-function cardsForEach(array) {
-    array.forEach((card) => addNewCard(createNewCard(card)));
-}
 
 addNewCard(createNewCard(initialCards))
 
@@ -78,7 +73,7 @@ function submitFormHandlerAdd(evt) {
     evt.preventDefault();
     const newCard = {
         link: ItemImage.value,
-        name: ItemTitle,
+        name: ItemTitle.value,
     }
     addNewCard(createNewCard(newCard))
     closePopup(popupAdd)
@@ -92,7 +87,7 @@ function cardLike(evt) {
 }
 
 function cardDelete(evt) {
-    evt.target.closest('cards__conteiner').remove();
+    evt.target.closest('.cards__conteiner').remove();
 }
 
 
