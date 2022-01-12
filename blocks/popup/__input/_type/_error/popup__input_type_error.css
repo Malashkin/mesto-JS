@@ -5,8 +5,13 @@
     line-height: 15px;
     color: #FF0000;
     border: none;
-    padding: 0;
-    margin: 5px auto 13px;
+    padding-top: 5px;
+    margin: 0 36px 0;
     max-width: 358px;
-    min-height: 13px;
+}
+
+@media screen and (max-width: 700px) {
+    .popup__input_type_error {
+        margin: 0 21px 0;
+    }
 }
