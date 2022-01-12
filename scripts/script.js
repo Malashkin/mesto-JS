@@ -5,17 +5,17 @@ const popupAdd = document.querySelector('#popupAdd');
 const buttonClosePopupAdd = document.querySelector('.popup__close_add');
 const buttonClosePopupEdit = document.querySelector('.popup__close_edit');
 const buttonClosePopupZoom = document.querySelector('.popup__close_zoom');
-const formEdit = document.querySelector('.popup__container');
+const formEdit = document.querySelector('.popup__form');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__spec');
-const nameInput = document.querySelector('.popup__text_type_name');
-const jobInput = document.querySelector('.popup__text_type_job');
+const nameInput = document.querySelector('.popup__input_type_name');
+const jobInput = document.querySelector('.popup__input_type_job');
 const addButton = document.querySelector('.profile__add');
 const cards = document.querySelector('.cards');
 const content = document.querySelector('.cards__list').content;
-const ItemImage = document.querySelector('.popup__text_type_image');
-const ItemTitle = document.querySelector('.popup__text_type_title');
-const formAdd = document.querySelector('.popup__container_type_add');
+const ItemImage = document.querySelector('.popup__input_type_image');
+const ItemTitle = document.querySelector('.popup__input_type_title');
+const formAdd = document.querySelector('.popup__form_type_add');
 const popupImage = document.querySelector('.popup__image');
 const popupSubtitle = document.querySelector('.popup__subtitle')
 const initialCards = [{
@@ -93,7 +93,9 @@ function submitFormHandlerEdit(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
+    formEdit.reset()
     closePopup(popupEdit)
+
 };
 
 function openEditModal() {
