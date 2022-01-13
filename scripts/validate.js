@@ -1,4 +1,4 @@
-const valitateOption = {
+const selectorsConfiguration = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',
@@ -66,4 +66,4 @@ const enableValidation = () => {
         setEventListeners(formElement);
     });
 };
-enableValidation(valitateOption);
+enableValidation(selectorsConfiguration);
