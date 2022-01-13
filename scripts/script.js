@@ -147,7 +147,7 @@ function closeByEscapeButton(evt) {
 buttonClosePopupAdd.addEventListener('click', () => closePopup(popupAdd));
 buttonClosePopupEdit.addEventListener('click', () => closePopup(popupEdit));
 buttonClosePopupZoom.addEventListener('click', () => closePopup(popupZoom));
-editButton.addEventListener('click', () => openPopup(popupEdit));
+editButton.addEventListener('click', openEditModal);
 formEdit.addEventListener('submit', submitFormHandlerEdit);
 addButton.addEventListener('click', () => openPopup(popupAdd));
 formAdd.addEventListener('submit', submitFormHandlerAdd);
