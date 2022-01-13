@@ -10,13 +10,13 @@ const buttonClosePopupZoom = document.querySelector('.popup__close_zoom');
 const formEdit = document.querySelector('.popup__form');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__spec');
-const nameInput = document.querySelector('.popup__input_type_name');
-const jobInput = document.querySelector('.popup__input_type_job');
+const nameInput = document.querySelector('.popup__input_name');
+const jobInput = document.querySelector('.popup__input_job');
 const addButton = document.querySelector('.profile__add');
 const cards = document.querySelector('.cards');
 const content = document.querySelector('.cards__list').content;
-const ItemImage = document.querySelector('.popup__input_type_image');
-const ItemTitle = document.querySelector('.popup__input_type_title');
+const ItemImage = document.querySelector('.popup__input_image');
+const ItemTitle = document.querySelector('.popup__input_title');
 const formAdd = document.querySelector('.popup__form_type_add');
 const popupImage = document.querySelector('.popup__image');
 const popupSubtitle = document.querySelector('.popup__subtitle')
@@ -134,7 +134,6 @@ function closeByOverlay(evt) {
         formEdit.reset()
     }
 }
-console.log(document.querySelectorAll(`.${popupInput.id}-error`));
 
 function closeByEscapeButton(evt) {
     const overlay = document.querySelector('.popup_type_opened')
