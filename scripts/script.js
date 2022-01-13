@@ -2,6 +2,7 @@ const editButton = document.querySelector('.profile__button');
 const popupEdit = document.querySelector('#popupEdit');
 const popupZoom = document.querySelector('#popupZoom');
 const popupAdd = document.querySelector('#popupAdd');
+const popupAddSubmit = popupAdd.querySelector('.popup__button')
 const buttonClosePopupAdd = document.querySelector('.popup__close_add');
 const buttonClosePopupEdit = document.querySelector('.popup__close_edit');
 const buttonClosePopupZoom = document.querySelector('.popup__close_zoom');
@@ -76,6 +77,8 @@ function submitFormHandlerAdd(evt) {
     }
     addNewCard(createNewCard(newCard))
     closePopup(popupAdd)
+    popupAddSubmit.setAttribute('disabled', true)
+    popupAddSubmit.classList.add('popup__button_disable')
     formAdd.reset();
 };
 
