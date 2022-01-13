@@ -4,7 +4,7 @@ const selectorsConfiguration = {
     submitButtonSelector: '.popup__button',
     inactiveButtonClass: 'popup__button_disabled',
     errorClass: 'popup__error_visible',
-    inputErrorClass: 'popup__input_type_error',
+    inputErrorClass: 'popup__input_error',
 
 };
 
@@ -12,14 +12,14 @@ const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add('popup__error_visible');
     errorElement.textContent = errorMessage;
-    errorElement.classList.add('popup__input_type_error');
+    errorElement.classList.add('popup__input_error');
 }
 
 const hideInputError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove('popup__error_visible')
     errorElement.textContent = ''
-    errorElement.classList.remove('popup__input_type_error')
+    errorElement.classList.remove('popup__input_error')
 };
 
 const isValid = (formElement, inputElement) => {
