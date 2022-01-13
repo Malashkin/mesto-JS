@@ -3,6 +3,7 @@ const popupEdit = document.querySelector('#popupEdit');
 const popupZoom = document.querySelector('#popupZoom');
 const popupAdd = document.querySelector('#popupAdd');
 const popupAddSubmit = popupAdd.querySelector('.popup__button')
+const popupInput = document.querySelector('.popup__input')
 const buttonClosePopupAdd = document.querySelector('.popup__close_add');
 const buttonClosePopupEdit = document.querySelector('.popup__close_edit');
 const buttonClosePopupZoom = document.querySelector('.popup__close_zoom');
@@ -77,9 +78,9 @@ function submitFormHandlerAdd(evt) {
     }
     addNewCard(createNewCard(newCard))
     closePopup(popupAdd)
+    formAdd.reset();
     popupAddSubmit.setAttribute('disabled', true)
     popupAddSubmit.classList.add('popup__button_disable')
-    formAdd.reset();
 };
 
 
@@ -116,11 +117,33 @@ function openPopupZoom(link, name) {
 
 function openPopup(popup) {
     popup.classList.add('popup_type_opened');
+    document.addEventListener('mousedown', closeByOverlay)
+    document.addEventListener('keydown', closeByEscapeButton)
 };
 
 function closePopup(popup) {
     popup.classList.remove('popup_type_opened')
+    document.removeEventListener('mousedown', closeByOverlay)
+    document.removeEventListener('keydown', closeByEscapeButton)
 }
+
+function closeByOverlay(evt) {
+    const overlay = document.querySelector('.popup_type_opened')
+    if (evt.target === overlay) {
+        closePopup(overlay)
+        formEdit.reset()
+    }
+}
+console.log(document.querySelectorAll(`.${popupInput.id}-error`));
+
+function closeByEscapeButton(evt) {
+    const overlay = document.querySelector('.popup_type_opened')
+    if (evt.key === 'Escape') {
+        closePopup(overlay)
+    }
+}
+
+
 
 buttonClosePopupAdd.addEventListener('click', () => closePopup(popupAdd));
 buttonClosePopupEdit.addEventListener('click', () => closePopup(popupEdit));
