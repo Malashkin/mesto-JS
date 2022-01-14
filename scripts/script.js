@@ -55,7 +55,6 @@ function submitFormHandlerAdd(evt) {
     deactivetingSubmit(popupSubmit)
 };
 
-
 function cardLike(evt) {
     evt.target.classList.toggle('cards__emotion_active')
 }
@@ -63,7 +62,6 @@ function cardLike(evt) {
 function cardDelete(evt) {
     evt.target.closest('.cards__conteiner').remove();
 }
-
 
 function submitFormHandlerEdit(evt) {
     evt.preventDefault();
@@ -75,16 +73,16 @@ function submitFormHandlerEdit(evt) {
 };
 
 function openEditModal() {
-    popupEdit.classList.add('popup_type_opened');
+    openPopup(popupEdit);
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 };
 
 function openPopupZoom(link, name) {
+    openPopup(popupZoom);
     popupImage.src = link;
     popupImage.alt = name;
     popupSubtitle.textContent = name;
-    openPopup(popupZoom);
 };
 
 function openPopup(popup) {
@@ -113,8 +111,6 @@ function closeByEscapeButton(evt) {
         closePopup(overlay)
     }
 }
-
-
 
 buttonClosePopupAdd.addEventListener('click', () => closePopup(popupAdd));
 buttonClosePopupEdit.addEventListener('click', () => closePopup(popupEdit));

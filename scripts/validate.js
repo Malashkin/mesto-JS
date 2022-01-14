@@ -5,7 +5,6 @@ const selectorsConfiguration = {
     inactiveButtonClass: 'popup__button_disabled',
     errorClass: 'popup__error_visible',
     inputErrorClass: 'popup__input_error',
-
 };
 
 const showInputError = (formElement, inputElement, selectorsConfiguration, errorMessage) => {
@@ -14,6 +13,7 @@ const showInputError = (formElement, inputElement, selectorsConfiguration, error
     errorElement.textContent = errorMessage;
     errorElement.classList.add(selectorsConfiguration.inputErrorClass);
 }
+
 const hideInputError = (formElement, inputElement, selectorsConfiguration) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove(selectorsConfiguration.errorClass)
@@ -35,27 +35,24 @@ const hasInvalidInput = (inputList) => {
     });
 };
 
-function activetingSubmit(selectorsConfiguration, buttonElement) {
+function activetingSubmit(buttonElement, selectorsConfiguration) {
     buttonElement.classList.remove(selectorsConfiguration.inactiveButtonClass)
     buttonElement.removeAttribute("disabled");
 }
 
-function deactivetingSubmit(selectorsConfiguration, buttonElement) {
+function deactivetingSubmit(buttonElement, selectorsConfiguration) {
     buttonElement.setAttribute("disabled", true);
     buttonElement.classList.add(selectorsConfiguration.inactiveButtonClass)
 }
 
 const toggleButtonState = (inputList, buttonElement, selectorsConfiguration) => {
-
     if (hasInvalidInput(inputList)) {
-        buttonElement.setAttribute("disabled", true);
-        buttonElement.classList.add('popup__button_disable')
+        deactivetingSubmit(buttonElement, selectorsConfiguration)
     } else {
-        buttonElement.classList.remove('popup__button_disable')
-        buttonElement.removeAttribute("disabled");
-
+        activetingSubmit(buttonElement, selectorsConfiguration)
     }
 }
+
 const setEventListeners = (formElement, selectorsConfiguration) => {
     const inputList = Array.from(formElement.querySelectorAll(selectorsConfiguration.inputSelector));
     const buttonElement = formElement.querySelector(selectorsConfiguration.submitButtonSelector);
