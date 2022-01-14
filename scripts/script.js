@@ -2,7 +2,7 @@ const editButton = document.querySelector('.profile__button');
 const popupEdit = document.querySelector('#popupEdit');
 const popupZoom = document.querySelector('#popupZoom');
 const popupAdd = document.querySelector('#popupAdd');
-const popupAddSubmit = popupAdd.querySelector('.popup__button')
+const popupSubmit = popupAdd.querySelector('.popup__button')
 const popupInput = document.querySelector('.popup__input')
 const buttonClosePopupAdd = document.querySelector('.popup__close_add');
 const buttonClosePopupEdit = document.querySelector('.popup__close_edit');
@@ -52,8 +52,7 @@ function submitFormHandlerAdd(evt) {
     addNewCard(createNewCard(newCard))
     closePopup(popupAdd)
     formAdd.reset();
-    popupAddSubmit.setAttribute('disabled', true)
-    popupAddSubmit.classList.add('popup__button_disable')
+    deactivetingSubmit(popupSubmit)
 };
 
 

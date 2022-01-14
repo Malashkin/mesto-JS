@@ -36,13 +36,21 @@ const hasInvalidInput = (inputList) => {
     });
 };
 
+function activetingSubmit(buttonElement) {
+    buttonElement.classList.remove('popup__button_disable')
+    buttonElement.removeAttribute("disabled");
+}
+
+function deactivetingSubmit(buttonElement) {
+    buttonElement.setAttribute("disabled", true);
+    buttonElement.classList.add('popup__button_disable')
+}
+
 const toggleButtonState = (inputList, buttonElement) => {
     if (hasInvalidInput(inputList)) {
-        buttonElement.setAttribute("disabled", true);
-        buttonElement.classList.add('popup__button_disable')
+        deactivetingSubmit(buttonElement)
     } else {
-        buttonElement.classList.remove('popup__button_disable')
-        buttonElement.removeAttribute("disabled");
+        activetingSubmit(buttonElement)
     }
 }
 
