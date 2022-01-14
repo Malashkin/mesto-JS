@@ -45,7 +45,7 @@ function deactivetingSubmit(selectorsConfiguration, buttonElement) {
     buttonElement.classList.add(selectorsConfiguration.inactiveButtonClass)
 }
 
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, selectorsConfiguration) => {
 
     if (hasInvalidInput(inputList)) {
         buttonElement.setAttribute("disabled", true);
@@ -55,9 +55,7 @@ const toggleButtonState = (inputList, buttonElement) => {
         buttonElement.removeAttribute("disabled");
 
     }
-
 }
-
 const setEventListeners = (formElement, selectorsConfiguration) => {
     const inputList = Array.from(formElement.querySelectorAll(selectorsConfiguration.inputSelector));
     const buttonElement = formElement.querySelector(selectorsConfiguration.submitButtonSelector);
