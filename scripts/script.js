@@ -20,7 +20,6 @@ const ItemTitle = document.querySelector('.popup__input_title');
 const formAdd = document.querySelector('.popup__form_type_add');
 const popupImage = document.querySelector('.popup__image');
 const popupSubtitle = document.querySelector('.popup__subtitle')
-const popupDisabled = formAdd.querySelector('.popup__button_disabled')
 
 function createNewCard(card) {
     const cardItem = content.querySelector('.cards__conteiner').cloneNode(true);
