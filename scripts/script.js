@@ -52,7 +52,7 @@ function submitFormHandlerAdd(evt) {
     addNewCard(createNewCard(newCard))
     closePopup(popupAdd)
     formAdd.reset();
-    deactivetingSubmit(popupSubmit)
+    deactivetingSubmit(popupSubmit, selectorsConfiguration)
 };
 
 function cardLike(evt) {
