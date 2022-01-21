@@ -1,3 +1,4 @@
+import { initialCards } from './cards.js'
 const editButton = document.querySelector('.profile__button');
 const popupEdit = document.querySelector('#popupEdit');
 const popupZoom = document.querySelector('#popupZoom');
