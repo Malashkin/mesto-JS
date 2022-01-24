@@ -22,6 +22,53 @@ const formAdd = document.querySelector('.popup__form_type_add');
 const popupImage = document.querySelector('.popup__image');
 const popupSubtitle = document.querySelector('.popup__subtitle')
 
+class Card {
+    constructor(link, name) {
+        this._name = name;
+        this._link = link;
+    }
+    _getTemplate() {
+        const cardElement = document
+            .querySelector('.cards__list')
+            .content
+            .querySelector('.cards__conteiner')
+            .cloneNode(true)
+        return cardElement
+    }
+    generateCard() {
+        this._element = this._getTemplate();
+        this._setEventListeners();
+        this._element.querySelector('.cards__image').src = this._link;
+        this._element.querySelector('.cards__title').textContent = this._name;
+        return this._element
+    }
+    _setEventListeners() {
+        this._element.querySelector('.cards__emotion').addEventListener('click', () => {
+            this._clickLike();
+        });
+        this._element.querySelector('.cards__trashicon').addEventListener('click', () => {
+            this._clickDelete();
+        });
+        this._element.querySelector('.cards__image').addEventListener('click', () => {
+            openPopupZoom(this._link, this._name);
+        });
+    };
+    _clickLike() {
+        this._element.querySelector('.cards__emotion').classList.toggle('cards__emotion_active')
+    }
+    _clickDelete() {
+        this._element.querySelector('.cards__trashicon').closest('.cards__conteiner').remove();
+    }
+}
+
+
+initialCards.forEach((item) => {
+    const card = new Card(item.link, item.name)
+    const cardElement = card.generateCard()
+    document.querySelector('.cards').prepend(cardElement)
+});
+
+
 function createNewCard(card) {
     const cardItem = content.querySelector('.cards__conteiner').cloneNode(true);
     const cardsImageClone = cardItem.querySelector('.cards__image');
@@ -30,8 +77,6 @@ function createNewCard(card) {
     cardsImageClone.src = card.link;
     cardsImageClone.alt = card.name;
     cardItem.querySelector('.cards__title').textContent = card.name;
-    cardButtonLike.addEventListener('click', cardLike);
-    cardButtonDelete.addEventListener('click', cardDelete);
     cardsImageClone.addEventListener('click', () => openPopupZoom(card.link, card.name));
     return cardItem;
 };
@@ -46,23 +91,16 @@ initialCards.forEach((item) => {
 
 function submitFormHandlerAdd(evt) {
     evt.preventDefault();
-    const newCard = {
-        link: ItemImage.value,
-        name: ItemTitle.value,
+    class Card extends NewCard {
+        constructor(link, name) {
+            link = ItemImage.value;
+            name = ItemTitle.value;
+        }
     }
-    addNewCard(createNewCard(newCard))
     closePopup(popupAdd)
     formAdd.reset();
     deactivetingSubmit(popupSubmit, selectorsConfiguration)
 };
-
-function cardLike(evt) {
-    evt.target.classList.toggle('cards__emotion_active')
-}
-
-function cardDelete(evt) {
-    evt.target.closest('.cards__conteiner').remove();
-}
 
 function submitFormHandlerEdit(evt) {
     evt.preventDefault();
@@ -70,7 +108,6 @@ function submitFormHandlerEdit(evt) {
     profileJob.textContent = jobInput.value;
     formEdit.reset()
     closePopup(popupEdit)
-
 };
 
 function openEditModal() {
