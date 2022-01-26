@@ -1,4 +1,4 @@
-const selectorsConfiguration = {
+export const selectorsConfiguration = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',
@@ -40,7 +40,7 @@ function activetingSubmit(buttonElement, selectorsConfiguration) {
     buttonElement.removeAttribute("disabled");
 }
 
-function deactivetingSubmit(buttonElement, selectorsConfiguration) {
+export function deactivetingSubmit(buttonElement, selectorsConfiguration) {
     buttonElement.setAttribute("disabled", true);
     buttonElement.classList.add(selectorsConfiguration.inactiveButtonClass)
 }

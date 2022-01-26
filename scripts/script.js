@@ -1,10 +1,12 @@
-import { initialCards } from './cards.js'
+import { initialCards } from './initial cards.js';
+import { Card } from './Card.js';
+import { selectorsConfiguration } from './validate.js';
+import { deactivetingSubmit } from './validate.js';
 const editButton = document.querySelector('.profile__button');
 const popupEdit = document.querySelector('#popupEdit');
 const popupZoom = document.querySelector('#popupZoom');
 const popupAdd = document.querySelector('#popupAdd');
 const popupSubmit = popupAdd.querySelector('.popup__button')
-const popupInput = document.querySelector('.popup__input')
 const buttonClosePopupAdd = document.querySelector('.popup__close_add');
 const buttonClosePopupEdit = document.querySelector('.popup__close_edit');
 const buttonClosePopupZoom = document.querySelector('.popup__close_zoom');
@@ -22,81 +24,30 @@ const formAdd = document.querySelector('.popup__form_type_add');
 const popupImage = document.querySelector('.popup__image');
 const popupSubtitle = document.querySelector('.popup__subtitle')
 
-class Card {
-    constructor(link, name) {
-        this._name = name;
-        this._link = link;
-    }
-    _getTemplate() {
-        const cardElement = document
-            .querySelector('.cards__list')
-            .content
-            .querySelector('.cards__conteiner')
-            .cloneNode(true)
-        return cardElement
-    }
-    generateCard() {
-        this._element = this._getTemplate();
-        this._setEventListeners();
-        this._element.querySelector('.cards__image').src = this._link;
-        this._element.querySelector('.cards__title').textContent = this._name;
-        return this._element
-    }
-    _setEventListeners() {
-        this._element.querySelector('.cards__emotion').addEventListener('click', () => {
-            this._clickLike();
-        });
-        this._element.querySelector('.cards__trashicon').addEventListener('click', () => {
-            this._clickDelete();
-        });
-        this._element.querySelector('.cards__image').addEventListener('click', () => {
-            openPopupZoom(this._link, this._name);
-        });
-    };
-    _clickLike() {
-        this._element.querySelector('.cards__emotion').classList.toggle('cards__emotion_active')
-    }
-    _clickDelete() {
-        this._element.querySelector('.cards__trashicon').closest('.cards__conteiner').remove();
-    }
-}
 
 
 initialCards.forEach((item) => {
-    const card = new Card(item.link, item.name)
+    const card = new Card(item.link, item.name, openPopupZoom)
     const cardElement = card.generateCard()
     document.querySelector('.cards').prepend(cardElement)
 });
 
 
-function createNewCard(card) {
-    const cardItem = content.querySelector('.cards__conteiner').cloneNode(true);
-    const cardsImageClone = cardItem.querySelector('.cards__image');
-    const cardButtonLike = cardItem.querySelector('.cards__emotion');
-    const cardButtonDelete = cardItem.querySelector('.cards__trashicon');
-    cardsImageClone.src = card.link;
-    cardsImageClone.alt = card.name;
-    cardItem.querySelector('.cards__title').textContent = card.name;
-    cardsImageClone.addEventListener('click', () => openPopupZoom(card.link, card.name));
-    return cardItem;
+function createNewCard(link, name) {
+    return new Card(link, name, openPopupZoom).generateCard()
 };
 
 function addNewCard(card) {
     cards.prepend(card);
 };
 
-initialCards.forEach((item) => {
-    addNewCard(createNewCard(item));
-});
-
 function submitFormHandlerAdd(evt) {
     evt.preventDefault();
-    class Card extends NewCard {
-        constructor(link, name) {
-            link = ItemImage.value;
-            name = ItemTitle.value;
-        }
+    const newItem = {
+        link: ItemImage.value,
+        name: ItemTitle.value,
     }
+    addNewCard(createNewCard(newItem.link, newItem.name))
     closePopup(popupAdd)
     formAdd.reset();
     deactivetingSubmit(popupSubmit, selectorsConfiguration)
