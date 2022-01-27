@@ -50,7 +50,7 @@
                     <span class="popup__span input-name-error"></span>
                     <input id="input-job" class="popup__input popup__input_job" type="text" placeholder="О себе" value="" name="job" required minlength="2" maxlength="200">
                     <span class="popup__span input-job-error"></span>
-                    <button type="submit" class="popup__button popup__button_disabled">Сохранить</button>
+                    <button type="submit" class="popup__button popup__button_disabled" disabled>Сохранить</button>
                 </form>
             </div>
         </div>
@@ -76,9 +76,10 @@
             </div>
         </div>
     </div>
-    <script src="scripts/validate.js"></script>
-    <script src="scripts/cards.js"></script>
-    <script src="scripts/script.js"></script>
+    <script type="module" src="scripts/FormValidator.js"></script>
+    <script type="module" src="scripts/Card.js"></script>
+    <script type="module" src="scripts/initialCards.js"></script>
+    <script type="module" src="scripts/script.js"></script>
 </body>
 
 </html>
