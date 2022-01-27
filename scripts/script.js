@@ -1,12 +1,11 @@
-import { initialCards } from './initial cards.js';
+import { initialCards } from './initialCards.js';
 import { Card } from './Card.js';
-import { selectorsConfiguration } from './validate.js';
-import { deactivetingSubmit } from './validate.js';
+import { FormValidator } from './FormValidator.js';
+
 const editButton = document.querySelector('.profile__button');
 const popupEdit = document.querySelector('#popupEdit');
 const popupZoom = document.querySelector('#popupZoom');
 const popupAdd = document.querySelector('#popupAdd');
-const popupSubmit = popupAdd.querySelector('.popup__button')
 const buttonClosePopupAdd = document.querySelector('.popup__close_add');
 const buttonClosePopupEdit = document.querySelector('.popup__close_edit');
 const buttonClosePopupZoom = document.querySelector('.popup__close_zoom');
@@ -17,21 +16,33 @@ const nameInput = document.querySelector('.popup__input_name');
 const jobInput = document.querySelector('.popup__input_job');
 const addButton = document.querySelector('.profile__add');
 const cards = document.querySelector('.cards');
-const content = document.querySelector('.cards__list').content;
 const ItemImage = document.querySelector('.popup__input_image');
 const ItemTitle = document.querySelector('.popup__input_title');
 const formAdd = document.querySelector('.popup__form_type_add');
 const popupImage = document.querySelector('.popup__image');
 const popupSubtitle = document.querySelector('.popup__subtitle')
+const selectorsConfiguration = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    errorClass: 'popup__error_visible',
+    inputErrorClass: 'popup__input_error',
+};
 
+const addFormValidation = new FormValidator(selectorsConfiguration, popupAdd);
 
+addFormValidation.enableValidation();
+
+const editFormValidation = new FormValidator(selectorsConfiguration, popupEdit);
+
+editFormValidation.enableValidation();
 
 initialCards.forEach((item) => {
     const card = new Card(item.link, item.name, openPopupZoom)
     const cardElement = card.generateCard()
     document.querySelector('.cards').prepend(cardElement)
 });
-
 
 function createNewCard(link, name) {
     return new Card(link, name, openPopupZoom).generateCard()
@@ -50,7 +61,7 @@ function submitFormHandlerAdd(evt) {
     addNewCard(createNewCard(newItem.link, newItem.name))
     closePopup(popupAdd)
     formAdd.reset();
-    deactivetingSubmit(popupSubmit, selectorsConfiguration)
+    addFormValidation.deactivetingSubmit();
 };
 
 function submitFormHandlerEdit(evt) {
