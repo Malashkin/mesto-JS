@@ -2,7 +2,7 @@ export class FormValidator {
     constructor(selectorsConfiguration, formElement) {
         this._selectorsConfiguration = selectorsConfiguration;
         this._formElement = formElement;
-        this._submitButtonSelector = this._formElement.querySelector(this._selectorsConfiguration.submitButtonSelector);
+        this._submitButton = this._formElement.querySelector(this._selectorsConfiguration.submitButtonSelector);
         this._inputSelector = Array.from(this._formElement.querySelectorAll(this._selectorsConfiguration.inputSelector))
     }
 
@@ -35,13 +35,13 @@ export class FormValidator {
     };
 
     _activetingSubmit() {
-        this._submitButtonSelector.classList.remove(this._selectorsConfiguration.inactiveButtonClass)
-        this._submitButtonSelector.removeAttribute("disabled");
+        this._submitButton.classList.remove(this._selectorsConfiguration.inactiveButtonClass)
+        this._submitButton.removeAttribute("disabled");
     }
 
     deactivetingSubmit() {
-        this._submitButtonSelector.setAttribute("disabled", true);
-        this._submitButtonSelector.classList.add(this._selectorsConfiguration.inactiveButtonClass)
+        this._submitButton.setAttribute("disabled", true);
+        this._submitButton.classList.add(this._selectorsConfiguration.inactiveButtonClass)
     }
 
     _toggleButtonState(inputList) {
