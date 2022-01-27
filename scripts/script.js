@@ -16,8 +16,8 @@ const nameInput = document.querySelector('.popup__input_name');
 const jobInput = document.querySelector('.popup__input_job');
 const addButton = document.querySelector('.profile__add');
 const cards = document.querySelector('.cards');
-const ItemImage = document.querySelector('.popup__input_image');
-const ItemTitle = document.querySelector('.popup__input_title');
+const itemImage = document.querySelector('.popup__input_image');
+const itemTitle = document.querySelector('.popup__input_title');
 const formAdd = document.querySelector('.popup__form_type_add');
 const popupImage = document.querySelector('.popup__image');
 const popupSubtitle = document.querySelector('.popup__subtitle')
@@ -39,13 +39,11 @@ const editFormValidation = new FormValidator(selectorsConfiguration, popupEdit);
 editFormValidation.enableValidation();
 
 initialCards.forEach((item) => {
-    const card = new Card(item.link, item.name, openPopupZoom)
-    const cardElement = card.generateCard()
-    document.querySelector('.cards').prepend(cardElement)
+    addNewCard(createNewCard(item.link, item.name))
 });
 
 function createNewCard(link, name) {
-    return new Card(link, name, openPopupZoom).generateCard()
+    return new Card(link, name, openPopupZoom, '.cards__list').generateCard()
 };
 
 function addNewCard(card) {
@@ -55,8 +53,8 @@ function addNewCard(card) {
 function submitFormHandlerAdd(evt) {
     evt.preventDefault();
     const newItem = {
-        link: ItemImage.value,
-        name: ItemTitle.value,
+        link: itemImage.value,
+        name: itemTitle.value,
     }
     addNewCard(createNewCard(newItem.link, newItem.name))
     closePopup(popupAdd)

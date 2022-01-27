@@ -1,8 +1,9 @@
 export class Card {
-    constructor(link, name, handleCardClick) {
+    constructor(link, name, handleCardClick, cardSelector) {
         this._name = name;
         this._link = link;
         this._handleCardClick = handleCardClick;
+        this._cardSelector = cardSelector;
     };
 
     _getTemplate() {
@@ -11,6 +12,7 @@ export class Card {
             .content
             .querySelector('.cards__conteiner')
             .cloneNode(true)
+
         return cardElement
     };
 
@@ -31,14 +33,16 @@ export class Card {
     };
 
     _clickDelete() {
-        this._element.querySelector('.cards__trashicon').closest('.cards__conteiner').remove();
+        this._element.remove();
+        this._element = null;
     };
 
     generateCard() {
         this._element = this._getTemplate();
         this._setEventListeners();
-        this._element.querySelector('.cards__image').src = this._link;
-        this._element.querySelector('.cards__image').alt = this._name;
+        const elementCard = this._element.querySelector('.cards__image')
+        elementCard.src = this._link;
+        elementCard.alt = this._name;
         this._element.querySelector('.cards__title').textContent = this._name;
 
         return this._element
