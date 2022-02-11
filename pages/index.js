@@ -13,7 +13,7 @@ addFormValidation.enableValidation();
 const editFormValidation = new FormValidator(selectorsConfiguration, popupEdit);
 
 editFormValidation.enableValidation();
-
+/*
 const popupWithZoom = new PopupWithImage('.popup')
 popupWithZoom.setEventListeners();
 
@@ -24,42 +24,42 @@ const initialItems = new Section({
         initialItems.addItem(newItem);
     }
 }, '.cards');
-
-/*
-initialCards.forEach((data) => {
-    addNewCard(createNewCard(data))
-});
 */
-function createNewCard(data) {
-    return new Card(data, openPopupZoom, '.cards__list').generateCard()
+
+initialCards.forEach((data) => {
+    addNewCard(createNewCard(data.link, data.name))
+});
+
+function createNewCard(link, name) {
+    return new Card(link, name, openPopupZoom, '.cards__list').generateCard()
 };
-/*
+
 function addNewCard(card) { // перенесена в Section
     cards.prepend(card);
 };
-*/
 
+/*
 const newUserInfo = new UserInfo('.profile__name', '.profile__spec')
+  
+    function setInputValue() {
+        nameInput.value = newUserInfo.getUserInfo().name;
+        jobInput.value = newUserInfo.getUserInfo().info;
+    }
 
-function setInputValue() {
-    nameInput.value = newUserInfo.getUserInfo().name;
-    jobInput.value = newUserInfo.getUserInfo().info;
-}
+    function setUserInfo(data) {
+        newUserInfo.setUserInfo(data)
+    };
+    console.log();
+    const popupFormEdit = new PopupWithForm('popup__form_type_edit', (data) => {
+        setUserInfo(data)
+    });
+    editButton.addEventListener('click', () => {
+        setInputValue();
+        popupFormEdit.open();
+    })
 
-function setUserInfo(data) {
-    newUserInfo.setUserInfo(data)
-};
-console.log();
-const popupFormEdit = new PopupWithForm('popup__form_type_edit', (data) => {
-    setUserInfo(data)
-});
-editButton.addEventListener('click', () => {
-    setInputValue();
-    popupFormEdit.open();
-})
-
-popupFormEdit.setEventListeners();
-
+    popupFormEdit.setEventListeners();
+    */
 
 
 
@@ -91,7 +91,7 @@ function openEditModal() { //
     jobInput.value = profileJob.textContent;
 };
 
-function openPopupZoom(link, name) { // перенесено в popupWithForm
+function openPopupZoom(link, name) {
     openPopup(popupZoom);
     popupImage.src = link;
     popupImage.alt = name;
