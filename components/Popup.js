@@ -1,6 +1,6 @@
 export default class Popup {
-    constructor(popupSelectior) {
-        this._popup = popupSelectior;
+    constructor(popupSelector) {
+        this._popup = document.querySelector(popupSelector);
     }
     open() {
         this._popup.classList.add('popup_type_opened')
@@ -21,6 +21,6 @@ export default class Popup {
             if (evt.target.contains('popup_type_opened') || evt.target.contains('popup__close')) {
                 this._popup.close()
             }
-        })
+        });
     }
 }
