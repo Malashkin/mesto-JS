@@ -31,8 +31,6 @@ function createNewCard(data) {
 };
 
 
-
-
 const newUserInfo = new UserInfo('.profile__name', '.profile__spec')
 
 function setInputValue() {
@@ -58,8 +56,6 @@ const popupFormAdd = new PopupWithForm('.popup__form_type_add', (data) => {
     cards.prepend(generateCard(data))
 })
 
-addButton.addEventListener('click', () => {
-    popupFormAdd.open()
-});
+addButton.addEventListener('click', open(popupFormAdd));
 
 popupFormAdd.setEventListeners()
