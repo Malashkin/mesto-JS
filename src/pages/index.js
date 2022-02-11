@@ -19,47 +19,47 @@ popupWithZoom.setEventListeners();
 
 const initialItems = new Section({
     items: initialCards,
-    renderer: (item) => {
-        const newItem = new Card(item, popupWithZoom.openPopupZoom, '.cards__list').generateCard();
-        initialItems.addItem(newItem);
+    renderer: (data) => {
+        initialItems.addItem(createNewCard(data));
     }
 }, '.cards');
 
-/*
+
 initialCards.forEach((data) => {
     addNewCard(createNewCard(data))
 });
-*/
+
 function createNewCard(data) {
-    return new Card(data, openPopupZoom, '.cards__list').generateCard()
+    const newCard = new Card(data, openPopupZoom, '.cards__list')
+    return newCard.generateCard()
 };
-/*
+
 function addNewCard(card) { // перенесена в Section
     cards.prepend(card);
 };
-*/
 
+/*
 const newUserInfo = new UserInfo('.profile__name', '.profile__spec')
+  
+    function setInputValue() {
+        nameInput.value = newUserInfo.getUserInfo().name;
+        jobInput.value = newUserInfo.getUserInfo().info;
+    }
 
-function setInputValue() {
-    nameInput.value = newUserInfo.getUserInfo().name;
-    jobInput.value = newUserInfo.getUserInfo().info;
-}
+    function setUserInfo(data) {
+        newUserInfo.setUserInfo(data)
+    };
+    console.log();
+    const popupFormEdit = new PopupWithForm('popup__form_type_edit', (data) => {
+        setUserInfo(data)
+    });
+    editButton.addEventListener('click', () => {
+        setInputValue();
+        popupFormEdit.open();
+    })
 
-function setUserInfo(data) {
-    newUserInfo.setUserInfo(data)
-};
-console.log();
-const popupFormEdit = new PopupWithForm('popup__form_type_edit', (data) => {
-    setUserInfo(data)
-});
-editButton.addEventListener('click', () => {
-    setInputValue();
-    popupFormEdit.open();
-})
-
-popupFormEdit.setEventListeners();
-
+    popupFormEdit.setEventListeners();
+    */
 
 
 
@@ -71,7 +71,7 @@ function submitFormHandlerAdd(evt) { // перенесено
         link: itemImage.value,
         name: itemTitle.value,
     }
-    addNewCard(createNewCard(newItem.link, newItem.name))
+    addNewCard(createNewCard(newItem))
     closePopup(popupAdd)
     formAdd.reset();
     addFormValidation.deactivetingSubmit();
@@ -91,7 +91,7 @@ function openEditModal() { //
     jobInput.value = profileJob.textContent;
 };
 
-function openPopupZoom(link, name) { // перенесено в popupWithForm
+function openPopupZoom(link, name) {
     openPopup(popupZoom);
     popupImage.src = link;
     popupImage.alt = name;
