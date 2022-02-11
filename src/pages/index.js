@@ -13,25 +13,25 @@ addFormValidation.enableValidation();
 const editFormValidation = new FormValidator(selectorsConfiguration, popupEdit);
 
 editFormValidation.enableValidation();
-/*
+
 const popupWithZoom = new PopupWithImage('.popup')
 popupWithZoom.setEventListeners();
 
 const initialItems = new Section({
     items: initialCards,
-    renderer: (item) => {
-        const newItem = new Card(item, popupWithZoom.openPopupZoom, '.cards__list').generateCard();
-        initialItems.addItem(newItem);
+    renderer: (data) => {
+        initialItems.addItem(createNewCard(data));
     }
 }, '.cards');
-*/
+
 
 initialCards.forEach((data) => {
-    addNewCard(createNewCard(data.link, data.name))
+    addNewCard(createNewCard(data))
 });
 
-function createNewCard(link, name) {
-    return new Card(link, name, openPopupZoom, '.cards__list').generateCard()
+function createNewCard(data) {
+    const newCard = new Card(data, openPopupZoom, '.cards__list')
+    return newCard.generateCard()
 };
 
 function addNewCard(card) { // перенесена в Section
@@ -71,7 +71,7 @@ function submitFormHandlerAdd(evt) { // перенесено
         link: itemImage.value,
         name: itemTitle.value,
     }
-    addNewCard(createNewCard(newItem.link, newItem.name))
+    addNewCard(createNewCard(newItem))
     closePopup(popupAdd)
     formAdd.reset();
     addFormValidation.deactivetingSubmit();
