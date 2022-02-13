@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="pages/index.css">
+    <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
 </head>
 
 <body class="body">
     <div class="page">
         <header class="header">
-            <img class="header__logo" src="./images/Vector.svg" alt='Логотип'>
+            <img class="header__logo" src="<%=require('../src/images/Vector.svg')%>" alt='Логотип'>
         </header>
         <main class="content">
             <section class="profile">
                 <div class="profile__card">
-                    <img class="profile__avatar" src="./images/image.jpg" alt="Аватар">
+                    <img class="profile__avatar" src="<%=require('../src/images/image.jpg'%>)" alt="Аватар">
                     <div class="profile__info">
                         <h1 class="profile__name">Жак-Ив-Кусто</h1>
                         <button class="profile__button" type="button"></button>
@@ -41,7 +41,7 @@
                 </div>
             </div>
         </template>
-        <div id='popupEdit' class="popup">
+        <div id='popupEdit' class="popup popup_type_edit">
             <div class="popup__content">
                 <button class="popup__close popup__close_edit" type="button"></button>
                 <form class="popup__form popup__form_type_edit" name="formEdit" novalidate>
@@ -54,7 +54,7 @@
                 </form>
             </div>
         </div>
-        <div id='popupAdd' class="popup">
+        <div id='popupAdd' class="popup popup_type_add">
             <div class="popup__content">
                 <button class="popup__close popup__close_add" type="button"></button>
                 <form class="popup__form popup__form_type_add" id="formAdd" novalidate>
