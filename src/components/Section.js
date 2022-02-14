@@ -1,13 +1,13 @@
 export default class Section {
     constructor({ items, renderer }, selectorContainer) {
-        this._items = items; // массив для добавления на страницу
-        this._renderer = renderer; // отвечает за создание элементов на странице
-        this._selectorContainer = document.querySelector(selectorContainer); // куда будет вставляться items
+        this._items = items;
+        this._renderer = renderer;
+        this._selectorContainer = document.querySelector(selectorContainer);
     }
-    addItem(card) { // куда добавить новый card на странице
+    addItem(card) {
         this._selectorContainer.prepend(card)
     }
-    renderItems() { // отрисовка всех card на странице
+    renderItems() {
         this._items.forEach(item => {
             this._renderer(item)
         });
