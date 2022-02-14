@@ -8,14 +8,15 @@ module.exports = {
         main: './src/pages/index.js'
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, './dist'),
         filename: 'main.js',
         publicPath: '',
     },
+    devtool: 'inline-source-map',
     mode: 'development',
     devServer: {
         static: {
-            directory: path.join(__dirname, 'public'),
+            directory: path.join(__dirname, './dist'),
         },
         open: true,
         compress: true,
