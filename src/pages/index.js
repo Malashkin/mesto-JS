@@ -5,7 +5,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 // import './index.css'
-import { initialCards, editButton, popupEdit, popupZoom, popupAdd, buttonClosePopupAdd, buttonClosePopupEdit, buttonClosePopupZoom, formEdit, profileName, profileJob, nameInput, jobInput, addButton, cards, itemImage, itemTitle, formAdd, popupImage, popupSubtitle, selectorsConfiguration } from '../utils/constatnts.js'
+import { initialCards, editButton, popupEdit, sectionCards, cardsList, popupZoom, popupAdd, popupEditSelector, popupAddSelector, profileNameSelector, profileInfoSelector, nameInput, jobInput, addButton, cards, selectorsConfiguration } from '../utils/constatnts.js'
 
 const addFormValidation = new FormValidator(selectorsConfiguration, popupAdd);
 addFormValidation.enableValidation();
@@ -13,7 +13,7 @@ addFormValidation.enableValidation();
 const editFormValidation = new FormValidator(selectorsConfiguration, popupEdit);
 editFormValidation.enableValidation();
 
-const popupWithZoom = new PopupWithImage('.popup_type_zoom')
+const popupWithZoom = new PopupWithImage(popupZoom)
 popupWithZoom.setEventListeners();
 
 
@@ -22,7 +22,7 @@ const initialItems = new Section({
     renderer: (item) => {
         initialItems.addItem(createNewCard(item));
     }
-}, '.cards');
+}, sectionCards);
 initialItems.renderItems();
 
 function handleCardClick(link, name) {
@@ -30,19 +30,18 @@ function handleCardClick(link, name) {
 };
 
 function createNewCard(data) {
-    const newCard = new Card(data, handleCardClick, '.cards__list')
+    const newCard = new Card(data, handleCardClick, cardsList)
     return newCard.generateCard()
 };
 
-
-const UserInfom = new UserInfo('.profile__name', '.profile__spec')
+const UserInfom = new UserInfo(profileNameSelector, profileInfoSelector)
 
 function setInputValue() {
     nameInput.value = UserInfom.getUserInfo().name;
     jobInput.value = UserInfom.getUserInfo().info;
 }
 
-const popupFormEdit = new PopupWithForm('.popup_type_edit', (data) => {
+const popupFormEdit = new PopupWithForm(popupEditSelector, (data) => {
     UserInfom.setUserInfo(data)
 });
 popupFormEdit.setEventListeners();
@@ -52,9 +51,8 @@ editButton.addEventListener('click', () => {
     popupFormEdit.open();
 })
 
-const popupFormAdd = new PopupWithForm('.popup_type_add', (data) => {
+const popupFormAdd = new PopupWithForm(popupAddSelector, (data) => {
     cards.prepend(createNewCard(data))
-    console.log(data);
 })
 
 addButton.addEventListener('click', () => popupFormAdd.open());
