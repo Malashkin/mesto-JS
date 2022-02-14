@@ -42,6 +42,13 @@ export const itemTitle = document.querySelector('.popup__input_title');
 export const formAdd = document.querySelector('.popup__form_type_add');
 export const popupImageSelector = '.popup__image';
 export const popupSubtitleSelector = '.popup__subtitle';
+export const popupZoom = '.popup_type_zoom';
+export const sectionCards = '.cards';
+export const cardsList = '.cards__list';
+export const profileNameSelector = '.profile__name';
+export const profileInfoSelector = '.profile__spec';
+export const popupEditSelector = '.popup_type_edit';
+export const popupAddSelector = '.popup_type_add';
 export const selectorsConfiguration = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
@@ -50,10 +57,3 @@ export const selectorsConfiguration = {
     errorClass: 'popup__error_visible',
     inputErrorClass: 'popup__input_error',
 };
-export const popupZoom = '.popup_type_zoom';
-export const sectionCards = '.cards';
-export const cardsList = '.cards__list';
-export const profileNameSelector = '.profile__name';
-export const profileInfoSelector = '.profile__spec';
-export const popupEditSelector = '.popup_type_edit';
-export const popupAddSelector = '.popup_type_add';

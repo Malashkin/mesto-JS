@@ -4,7 +4,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
-// import './index.css'
+import './index.css'
 import { initialCards, editButton, popupEdit, sectionCards, cardsList, popupZoom, popupAdd, popupEditSelector, popupAddSelector, profileNameSelector, profileInfoSelector, nameInput, jobInput, addButton, cards, selectorsConfiguration } from '../utils/constatnts.js'
 
 const addFormValidation = new FormValidator(selectorsConfiguration, popupAdd);

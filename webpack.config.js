@@ -12,13 +12,11 @@ module.exports = {
         filename: 'main.js',
         publicPath: '',
     },
-    devtool: 'inline-source-map',
     mode: 'development',
     devServer: {
         static: {
             directory: path.join(__dirname, 'public'),
         },
-
         open: true,
         compress: true,
         port: 8080
