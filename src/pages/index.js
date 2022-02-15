@@ -34,15 +34,15 @@ function createNewCard(data) {
     return newCard.generateCard()
 };
 
-const UserInfom = new UserInfo(profileNameSelector, profileInfoSelector)
+const userInfom = new UserInfo(profileNameSelector, profileInfoSelector)
 
 function setInputValue() {
-    nameInput.value = UserInfom.getUserInfo().name;
-    jobInput.value = UserInfom.getUserInfo().info;
+    nameInput.value = userInfom.getUserInfo().name;
+    jobInput.value = userInfom.getUserInfo().info;
 }
 
 const popupFormEdit = new PopupWithForm(popupEditSelector, (data) => {
-    UserInfom.setUserInfo(data)
+    userInfom.setUserInfo(data)
 });
 popupFormEdit.setEventListeners();
 
@@ -52,8 +52,12 @@ editButton.addEventListener('click', () => {
 })
 
 const popupFormAdd = new PopupWithForm(popupAddSelector, (data) => {
-    cards.prepend(createNewCard(data))
+    addItem(data)
 })
 
-addButton.addEventListener('click', () => popupFormAdd.open());
+addButton.addEventListener('click', () => {
+    addFormValidation.resetValidation();
+    popupFormAdd.open()
+});
+
 popupFormAdd.setEventListeners();
