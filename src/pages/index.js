@@ -17,13 +17,13 @@ const popupWithZoom = new PopupWithImage(popupZoom)
 popupWithZoom.setEventListeners();
 
 
-const initialItems = new Section({
+const newItem = new Section({
     items: initialCards,
     renderer: (item) => {
-        initialItems.addItem(createNewCard(item));
+        newItem.addItem(createNewCard(item));
     }
 }, sectionCards);
-initialItems.renderItems();
+newItem.renderItems();
 
 function handleCardClick(link, name) {
     popupWithZoom.openPopupZoom(link, name)
@@ -34,15 +34,16 @@ function createNewCard(data) {
     return newCard.generateCard()
 };
 
-const UserInfom = new UserInfo(profileNameSelector, profileInfoSelector)
+const userInfom = new UserInfo(profileNameSelector, profileInfoSelector)
 
 function setInputValue() {
-    nameInput.value = UserInfom.getUserInfo().name;
-    jobInput.value = UserInfom.getUserInfo().info;
+    const userInformation = userInfom.getUserInfo();
+    nameInput.value = userInformation.name;
+    jobInput.value = userInformation.info;
 }
 
 const popupFormEdit = new PopupWithForm(popupEditSelector, (data) => {
-    UserInfom.setUserInfo(data)
+    userInfom.setUserInfo(data)
 });
 popupFormEdit.setEventListeners();
 
@@ -51,9 +52,13 @@ editButton.addEventListener('click', () => {
     popupFormEdit.open();
 })
 
-const popupFormAdd = new PopupWithForm(popupAddSelector, (data) => {
-    cards.prepend(createNewCard(data))
+const popupFormAdd = new PopupWithForm(popupAddSelector, (item) => {
+    newItem.addItem(createNewCard(item));
 })
 
-addButton.addEventListener('click', () => popupFormAdd.open());
+addButton.addEventListener('click', () => {
+    addFormValidation.resetValidation();
+    popupFormAdd.open()
+});
+
 popupFormAdd.setEventListeners();

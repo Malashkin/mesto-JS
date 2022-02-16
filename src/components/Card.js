@@ -17,19 +17,22 @@ export class Card {
     };
 
     _setEventListeners() {
-        this._element.querySelector('.cards__emotion').addEventListener('click', () => {
+        this._likeButton = this._element.querySelector('.cards__emotion');
+        this._likeButton.addEventListener('click', () => {
             this._clickLike();
         });
-        this._element.querySelector('.cards__trashicon').addEventListener('click', () => {
+        this._delButton = this._element.querySelector('.cards__trashicon');
+        this._delButton.addEventListener('click', () => {
             this._clickDelete();
         });
-        this._element.querySelector('.cards__image').addEventListener('click', () => {
+        this._cardImage = this._element.querySelector('.cards__image')
+        this._cardImage.addEventListener('click', () => {
             this._handleCardClick(this._link, this._name)
         });
     };
 
     _clickLike() {
-        this._element.querySelector('.cards__emotion').classList.toggle('cards__emotion_active')
+        this._likeButton.classList.toggle('cards__emotion_active')
     };
 
     _clickDelete() {
@@ -39,11 +42,11 @@ export class Card {
 
     generateCard() {
         this._element = this._getTemplate();
+        this._cardTitle = this._element.querySelector('.cards__title');
         this._setEventListeners();
-        const elementCard = this._element.querySelector('.cards__image')
-        elementCard.src = this._link;
-        elementCard.alt = this._name;
-        this._element.querySelector('.cards__title').textContent = this._name;
+        this._cardImage.src = this._link;
+        this._cardImage.alt = this._name;
+        this._cardTitle.textContent = this._name;
 
         return this._element
     };
