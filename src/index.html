@@ -15,7 +15,10 @@
         <main class="content">
             <section class="profile">
                 <div class="profile__card">
-                    <img class="profile__avatar" src="<%=require('../src/images/image.jpg')%>" alt="Аватар">
+                    <div class="profile__avatar">
+                        <img class="profile__image" src="<%=require('../src/images/image.jpg')%>" alt="Аватар">
+                        <button class="profile__avatar_button"></button>
+                    </div>
                     <div class="profile__info">
                         <h1 class="profile__name">Жак-Ив-Кусто</h1>
                         <button class="profile__button" type="button"></button>
@@ -30,13 +33,28 @@
         <footer class="footer">
             <p class="footer__copyright">© 2022 Mesto Russia</p>
         </footer>
-        <template class="cards__list">
+        <template class="cards__list cards__list_default">
+            <div class="cards__conteiner">
+                <img class="cards__image" src="." alt=".">
+                <div class="cards__description">
+                    <h2 class="cards__title"></h2>
+                    <div class="cards__reaction">
+                    <button class="cards__emotion" type="button"></button>
+                    <p class="cards__counter">0</p>
+                </div>
+                </div>
+            </div>
+        </template>
+        <template class="cards__list cards__list_user">
             <div class="cards__conteiner">
                 <img class="cards__image" src="." alt=".">
                 <button class="cards__trashicon" type="button"></button>
                 <div class="cards__description">
                     <h2 class="cards__title"></h2>
+                    <div class="cards__reaction">
                     <button class="cards__emotion" type="button"></button>
+                    <p class="cards__counter">0</p>
+                </div>
                 </div>
             </div>
         </template>
@@ -55,7 +73,7 @@
         </div>
         <div id='popupAdd' class="popup popup_type_add">
             <div class="popup__content">
-                <button class="popup__close popup__close_add" type="button"></button>
+                <button class="popup__close" type="button"></button>
                 <form class="popup__form popup__form_type_add" id="formAdd" novalidate>
                     <h2 class="popup__title">Новое место</h2>
                     <input id="input-title" class="popup__input popup__input_title" type="text" placeholder="Название" name="name" minlength="2" maxlength="30" required>
@@ -68,10 +86,30 @@
         </div>
         <div id='popupZoom' class="popup popup_type_zoom">
             <div class="popup__content popup__content_zoom">
-                <button class="popup__close popup__close_zoom" type="button">
+                <button class="popup__close" type="button">
                 </button>
                 <img class="popup__image" alt="." src=".">
                 <h2 class="popup__subtitle"></h2>
+            </div>
+        </div>
+        <div id='popupDelete' class="popup  popup_type_delete">
+            <div class="popup__content">
+                <button class="popup__close" type="button"></button>
+                <form class="popup__form">
+                    <h2 class="popup__title">Вы уверены?</h2>
+                    <button type="submit" class="popup__button">Да</button>
+                </form>
+            </div>
+        </div>
+        <div id='popupAvatar' class="popup popup_type_avatar">
+            <div class="popup__content">
+                <button class="popup__close" type="button"></button>
+                <form class="popup__form">
+                    <h2 class="popup__title">Обновить аватар</h2>
+                    <input id="input-url" class="popup__input" type="url" placeholder="Ссылка на аватар" name="link" required>
+                    <span class="popup__span input-url-error"> </span>
+                    <button type="submit" class="popup__button">Сохранить</button>
+                </form>
             </div>
         </div>
     </div>

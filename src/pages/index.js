@@ -1,11 +1,13 @@
 import { Card } from '../components/Card.js';
+import { NewCard } from '../components/NewCard.js';
 import { FormValidator } from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupDelete from '../components/PopupDelete.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import './index.css'
-import { initialCards, editButton, popupEdit, sectionCards, cardsList, popupZoom, popupAdd, popupEditSelector, popupAddSelector, profileNameSelector, profileInfoSelector, nameInput, jobInput, addButton, cards, selectorsConfiguration } from '../utils/constatnts.js'
+import { initialCards, editButton, popupEdit, delButton, popupDeleteSelector, sectionCards, cardsListUser, cardsListDefault, popupZoom, popupAdd, popupEditSelector, popupAddSelector, profileNameSelector, profileInfoSelector, nameInput, jobInput, addButton, selectorsConfiguration } from '../utils/constatnts.js'
 
 const addFormValidation = new FormValidator(selectorsConfiguration, popupAdd);
 addFormValidation.enableValidation();
@@ -20,7 +22,7 @@ popupWithZoom.setEventListeners();
 const newItem = new Section({
     items: initialCards,
     renderer: (item) => {
-        newItem.addItem(createNewCard(item));
+        newItem.addItem(createDefaultCard(item));
     }
 }, sectionCards);
 newItem.renderItems();
@@ -29,10 +31,15 @@ function handleCardClick(link, name) {
     popupWithZoom.openPopupZoom(link, name)
 };
 
-function createNewCard(data) {
-    const newCard = new Card(data, handleCardClick, cardsList)
-    return newCard.generateCard()
+function createDefaultCard(data) {
+    const defaultCard = new Card(data, handleCardClick, cardsListDefault)
+    return defaultCard.generateCard()
 };
+
+function createUserCard(data) {
+    const UserCard = new NewCard(data, handleCardClick, cardsListUser)
+    return UserCard.generateCard()
+}
 
 const userInfom = new UserInfo(profileNameSelector, profileInfoSelector)
 
@@ -53,7 +60,7 @@ editButton.addEventListener('click', () => {
 })
 
 const popupFormAdd = new PopupWithForm(popupAddSelector, (item) => {
-    newItem.addItem(createNewCard(item));
+    newItem.addItem(createUserCard(item));
 })
 
 addButton.addEventListener('click', () => {
@@ -62,3 +69,6 @@ addButton.addEventListener('click', () => {
 });
 
 popupFormAdd.setEventListeners();
+
+const popupDelete = new PopupDelete(popupDeleteSelector, delButton)
+popupDelete.setEventListeners()

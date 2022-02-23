@@ -1,0 +1,11 @@
+.profile__image {
+    position: relative;
+    width: 120px;
+    max-height: 120px;
+    border-radius: 90px;
+    z-index: 2;
+}
+
+.profile__image:hover {
+    opacity: 0.2;
+}

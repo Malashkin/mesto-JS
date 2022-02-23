@@ -12,18 +12,12 @@ export class Card {
             .content
             .querySelector('.cards__conteiner')
             .cloneNode(true)
-
         return cardElement
     };
-
     _setEventListeners() {
         this._likeButton = this._element.querySelector('.cards__emotion');
         this._likeButton.addEventListener('click', () => {
             this._clickLike();
-        });
-        this._delButton = this._element.querySelector('.cards__trashicon');
-        this._delButton.addEventListener('click', () => {
-            this._clickDelete();
         });
         this._cardImage = this._element.querySelector('.cards__image')
         this._cardImage.addEventListener('click', () => {
@@ -33,11 +27,6 @@ export class Card {
 
     _clickLike() {
         this._likeButton.classList.toggle('cards__emotion_active')
-    };
-
-    _clickDelete() {
-        this._element.remove();
-        this._element = null;
     };
 
     generateCard() {
