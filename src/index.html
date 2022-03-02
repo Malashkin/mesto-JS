@@ -33,26 +33,14 @@
         <footer class="footer">
             <p class="footer__copyright">© 2022 Mesto Russia</p>
         </footer>
-        <template class="cards__list cards__list_default">
+        <template class="cards__list">
             <div class="cards__conteiner">
                 <img class="cards__image" src="." alt=".">
+                <button type="button" class="cards__trashicon"></button>
                 <div class="cards__description">
                     <h2 class="cards__title"></h2>
                     <div class="cards__reaction">
-                    <button class="cards__emotion" type="button"></button>
-                    <p class="cards__counter">0</p>
-                </div>
-                </div>
-            </div>
-        </template>
-        <template class="cards__list cards__list_user">
-            <div class="cards__conteiner">
-                <img class="cards__image" src="." alt=".">
-                <button class="cards__trashicon" type="button"></button>
-                <div class="cards__description">
-                    <h2 class="cards__title"></h2>
-                    <div class="cards__reaction">
-                    <button class="cards__emotion" type="button"></button>
+                    <button type="button" class="cards__emotion"></button>
                     <p class="cards__counter">0</p>
                 </div>
                 </div>
@@ -65,7 +53,7 @@
                     <h2 class="popup__title">Редактировать профиль</h2>
                     <input id="input-name" class="popup__input popup__input_name" type="text" placeholder="Имя" value="" name="name" required minlength="2" maxlength="40">
                     <span class="popup__span input-name-error"></span>
-                    <input id="input-job" class="popup__input popup__input_job" type="text" placeholder="О себе" value="" name="job" required minlength="2" maxlength="200">
+                    <input id="input-job" class="popup__input popup__input_job" type="text" placeholder="О себе" value="" name="about" required minlength="2" maxlength="200">
                     <span class="popup__span input-job-error"></span>
                     <button type="submit" class="popup__button popup__button_disabled" disabled>Сохранить</button>
                 </form>
@@ -95,7 +83,7 @@
         <div id='popupDelete' class="popup  popup_type_delete">
             <div class="popup__content">
                 <button class="popup__close" type="button"></button>
-                <form class="popup__form">
+                <form class="popup__form popup__form_delete">
                     <h2 class="popup__title">Вы уверены?</h2>
                     <button type="submit" class="popup__button">Да</button>
                 </form>

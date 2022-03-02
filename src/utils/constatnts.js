@@ -1,29 +1,3 @@
-export const initialCards = [{
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
 export const editButton = document.querySelector('.profile__button');
 export const popupEdit = document.querySelector('#popupEdit');
 export const popupAdd = document.querySelector('#popupAdd');
@@ -38,13 +12,13 @@ export const delButton = document.querySelector('.cards__trashicon');
 export const itemImage = document.querySelector('.popup__input_image');
 export const itemTitle = document.querySelector('.popup__input_title');
 export const formAdd = document.querySelector('.popup__form_type_add');
+export const cardList = document.querySelector('.cards');
 export const popupDeleteSelector = '.popup_type_delete';
 export const popupImageSelector = '.popup__image';
 export const popupSubtitleSelector = '.popup__subtitle';
 export const popupZoom = '.popup_type_zoom';
 export const sectionCards = '.cards';
-export const cardsListDefault = '.cards__list_default';
-export const cardsListUser = '.cards__list_user';
+export const cardsList = '.cards__list';
 export const profileNameSelector = '.profile__name';
 export const profileInfoSelector = '.profile__spec';
 export const popupEditSelector = '.popup_type_edit';
