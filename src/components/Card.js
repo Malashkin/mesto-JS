@@ -79,6 +79,7 @@ export class Card {
     _likeAmount() {
         this._cardLike.classList.toggle('cards__emotion_active')
         this._cardLikeCounter.textContent = this._likes.lenght;
+        console.log(this._cardLikeCounter.textContent);
     };
     setLikes(cardData) {
         this._likes = cardData;

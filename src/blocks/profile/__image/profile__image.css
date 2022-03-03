@@ -1,9 +1,9 @@
 .profile__image {
     position: relative;
-    width: 120px;
-    max-height: 120px;
-    border-radius: 90px;
     z-index: 2;
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
 }
 
 .profile__image:hover {

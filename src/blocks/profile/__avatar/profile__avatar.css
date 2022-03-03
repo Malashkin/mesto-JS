@@ -1,5 +1,5 @@
-.profile__avatar {
-    display: flex;
-    background-color: black;
-    cursor: pointer;
-}
+    .profile__avatar {
+        display: flex;
+        background-color: black;
+        cursor: pointer;
+    }

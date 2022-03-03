@@ -1,24 +1,24 @@
-import { method } from "lodash";
-
 export default class Api {
     constructor(options) {
         this._baseUrl = options.baseUrl;
         this._headers = options.headers;
     }
+
+    _checkResult(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+    }
     getInitialCards() {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort36/cards/', {
+        return fetch(`${this._baseUrl}cards/`, {
                 method: 'GET',
                 headers: this._headers
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Что-то пошло не так: ${res.status}`);
-            });
+            .then(this._checkResult)
     };
     getUserInfo() {
-        return fetch('https://nomoreparties.co/v1/cohort36/users/me', {
+        return fetch(`${this._baseUrl}users/me`, {
                 method: 'GET',
                 headers: this._headers,
             })
@@ -30,82 +30,52 @@ export default class Api {
             });
     }
     editUserInfo(data) {
-        return fetch('https://nomoreparties.co/v1/cohort36/users/me', {
+        return fetch(`${this._baseUrl}users/me`, {
                 method: 'PATCH',
                 headers: this._headers,
                 body: JSON.stringify(data)
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Что-то пошло не так: ${res.status}`);
-            });
+            .then(this._checkResult)
     };
     createCardApi(data) {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort36/cards', {
+        return fetch(`${this._baseUrl}cards/`, {
                 method: 'POST',
                 headers: this._headers,
                 body: JSON.stringify(data)
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Что-то пошло не так: ${res.status}`);
-            });
+            .then(this._checkResult)
 
     }
     deleteCard(cardId) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort36/cards/${cardId}`, {
+        return fetch(`${this._baseUrl}cards/${cardId}`, {
                 method: "DELETE",
                 headers: this._headers,
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Что-то пошло не так: ${res.status}`);
-            });
+            .then(this._checkResult)
     }
 
     deleteCardLike(cardId) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort36/cards/${cardId}/likes`, {
+        return fetch(`${this._baseUrl}cards/${cardId}/likes`, {
                 method: "DELETE",
                 headers: this._headers,
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Что-то пошло не так: ${res.status}`);
-            });
+            .then(this._checkResult)
     }
 
     putCardLike(cardId) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort36/cards/${cardId}/likes`, {
+        return fetch(`${this._baseUrl}cards/${cardId}/likes`, {
                 method: "PUT",
                 headers: this._headers,
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Что-то пошло не так: ${res.status}`);
-            });
+            .then(this._checkResult)
     }
 
     editAvatar(data) {
-        return fetch(`${this._baseUrl}users/me/avatar`, {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
                 method: "PATCH",
                 headers: this._headers,
                 body: JSON.stringify(data)
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Что-то пошло не так: ${res.status}`);
-            });
+            .then(this._checkResult)
     }
 };
