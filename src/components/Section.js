@@ -11,5 +11,6 @@ export default class Section {
         this._items.forEach(item => {
             this._renderer(item)
         });
+
     }
 }
