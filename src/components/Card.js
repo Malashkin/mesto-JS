@@ -10,7 +10,6 @@ export class Card {
         this._handleCardClick = handleCardClick;
         this._handleLikeClick = handleLikeClick;
         this._handleDeleteCard = handleDeleteCard;
-
     };
 
     _getTemplate() {
@@ -25,9 +24,7 @@ export class Card {
     deleteElement() {
         this._element.remove();
         this._element = null;
-    }
-
-
+    };
 
     generateCard() {
         this._element = this._getTemplate();
@@ -66,9 +63,11 @@ export class Card {
             this._cardDelete.classList.add('cards__trashicon_deactive');
         }
     };
+
     isLiked() {
         return this._likes.some(owner => owner._id === this._usedId)
     };
+
     toggleLikeButton() {
         if (this.isLiked()) {
             this._cardLike.classList.add('cards__emotion_active');
@@ -76,11 +75,12 @@ export class Card {
             this._cardLike.classList.remove('cards__emotion_active');
         }
     };
+
     _likeAmount() {
         this._cardLike.classList.toggle('cards__emotion_active')
-        this._cardLikeCounter.textContent = this._likes.lenght;
-        console.log(this._cardLikeCounter.textContent);
+        this._cardLikeCounter.textContent = this._likes.length;
     };
+
     setLikes(cardData) {
         this._likes = cardData;
         this._likeAmount();
