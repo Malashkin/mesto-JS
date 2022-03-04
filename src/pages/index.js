@@ -45,6 +45,7 @@ const api = new Api({
     }
 });
 
+
 function createNewCard(data) {
     const defaultCard = new Card(data, cardsList, userId, handleCardClick, handleLikeClick, handleCardDelete)
     return defaultCard.generateCard()
@@ -115,6 +116,7 @@ function editUserInfo(data) {
     api.editUserInfo(data)
         .then(data => {
             setUserInfo(data)
+            console.log(setUserInfo(data));
         })
         .finally(() => {
             popupFormEdit.close()
@@ -141,6 +143,7 @@ function editAvatar(data) {
     api.editAvatar({ avatar: data.link })
         .then((data) => {
             setUserInfo(data)
+
         })
         .finally(() => {
             popupAvatarForm.close();

@@ -24,12 +24,7 @@ export default class Api {
                 method: 'GET',
                 headers: this._headers,
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Что-то пошло не так: ${res.status}`);
-            });
+            .then(this._checkResult)
     };
 
     editUserInfo(data) {
@@ -80,6 +75,6 @@ export default class Api {
                 headers: this._headers,
                 body: JSON.stringify(data)
             })
-            .then(this._checkResponse);
+            .then(this._checkResult)
     };
 }
