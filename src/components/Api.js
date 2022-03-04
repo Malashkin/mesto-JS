@@ -75,6 +75,12 @@ export default class Api {
                 headers: this._headers,
                 body: JSON.stringify(data)
             })
-            .then(this._checkResult)
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+
+                }
+                return Promise.reject(`Что-то пошло не так: ${res.status}`);
+            });
     };
 }
