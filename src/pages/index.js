@@ -1,14 +1,16 @@
+import './index.css'
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupDelete from '../components/PopupDelete.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
-import './index.css'
-import { editButton, popupEdit, popupAvatar, editAvatarButton, popupAvatarSelector, profileAvatar, popupDeleteSelector, sectionCards, cardsList, cardList, popupZoom, popupAdd, popupEditSelector, popupAddSelector, profileNameSelector, profileInfoSelector, nameInput, jobInput, addButton, selectorsConfiguration, cardsListDefault } from '../utils/constatnts.js'
 import Api from '../components/Api.js';
-import PopupDelete from '../components/PopupDelete.js';
+import { editButton, popupEdit, popupAvatar, editAvatarButton, popupAvatarSelector, profileAvatar, popupDeleteSelector, sectionCards, cardsList, cardList, popupZoom, popupAdd, popupEditSelector, popupAddSelector, profileNameSelector, profileInfoSelector, nameInput, jobInput, addButton, selectorsConfiguration } from '../utils/constatnts.js'
+
 let userId
+
 const addFormValidation = new FormValidator(selectorsConfiguration, popupAdd);
 addFormValidation.enableValidation();
 
@@ -20,7 +22,6 @@ avatarFormValidation.enableValidation();
 
 const popupWithZoom = new PopupWithImage(popupZoom)
 popupWithZoom.setEventListeners();
-
 
 const popupFormEdit = new PopupWithForm(popupEditSelector, editUserInfo)
 popupFormEdit.setEventListeners();
@@ -36,41 +37,10 @@ popupAvatarForm.setEventListeners();
 
 const userInfo = new UserInfo(profileNameSelector, profileInfoSelector, profileAvatar)
 
-const apiNewCard = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort36/',
-    headers: {
-        authorization: 'b63003c8-9150-4e29-8d9a-6e331bb26d1d',
-        'Content-Type': 'application/json'
-    }
-});
-const apiLike = new Api({
+const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort36/',
     headers: {
         authorization: "b63003c8-9150-4e29-8d9a-6e331bb26d1d",
-        'Content-Type': 'application/json'
-    }
-})
-
-const cardsApi = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort36/',
-    headers: {
-        authorization: 'b63003c8-9150-4e29-8d9a-6e331bb26d1d',
-        'Content-Type': 'application/json'
-    }
-});
-
-const apiUserInfo = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort36/',
-    headers: {
-        authorization: 'b63003c8-9150-4e29-8d9a-6e331bb26d1d',
-        'Content-Type': 'application/json'
-    }
-});
-
-const apiAvatar = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort36/',
-    headers: {
-        authorization: 'b63003c8-9150-4e29-8d9a-6e331bb26d1d',
         'Content-Type': 'application/json'
     }
 });
@@ -80,7 +50,7 @@ function createNewCard(data) {
     return defaultCard.generateCard()
 };
 
-cardsApi.getInitialCards()
+api.getInitialCards()
     .then(data => {
         const initialCards = new Section({
             items: data,
@@ -94,7 +64,7 @@ cardsApi.getInitialCards()
 function handleCardDelete(card) {
     popupDelete.open();
     popupDelete.handelSubmit(() => {
-        cardsApi.deleteCard(card.id)
+        api.deleteCard(card.id)
             .then((data) => {
                 card.deleteElement(data)
             })
@@ -102,7 +72,7 @@ function handleCardDelete(card) {
                 popupDelete.close()
             })
     })
-}
+};
 
 function handleCardClick(link, name) {
     popupWithZoom.openPopupZoom(link, name)
@@ -110,24 +80,21 @@ function handleCardClick(link, name) {
 
 function handleLikeClick(card) {
     if (card.isLiked()) {
-        apiLike.deleteCardLike(card.id)
+        api.deleteCardLike(card.id)
             .then(cardData => {
                 card.setLikes(cardData.likes)
-                console.log(card.id);
-                console.log(cardData.likes);
             })
     } else {
-        apiLike.putCardLike(card.id)
+        api.putCardLike(card.id)
             .then(cardData => {
                 card.setLikes(cardData.likes)
-                console.log(cardData.likes);
             })
     }
-}
+};
 
 function saveCard(data) {
     popupFormAdd.loadingConduction(true, 'Сохранить')
-    apiNewCard.createCardApi(data)
+    api.createCardApi(data)
         .then(data => {
             cardList.prepend(createNewCard(data))
         })
@@ -137,34 +104,30 @@ function saveCard(data) {
         .finally(() => {
             popupFormAdd.loadingConduction(false, 'Сохранить')
         })
-}
+};
 
 function setUserInfo(data) {
-    userInfo.setUserInfo(data);
-}
+    userInfo.setUserInfo(data)
+};
 
 function editUserInfo(data) {
     popupFormEdit.loadingConduction(true, 'Сохранить')
-    apiUserInfo.editUserInfo(data)
+    api.editUserInfo(data)
         .then(data => {
-            setUserInfo(data);
+            setUserInfo(data)
         })
         .finally(() => {
-            popupFormEdit.close();
+            popupFormEdit.close()
             popupFormEdit.loadingConduction(false, 'Сохранить')
         })
 };
 
-function updateFormValue() {
-    userInfo.getUserInfo();
-}
-
 function setInputValue() {
     nameInput.value = userInfo.getUserInfo().name;
     jobInput.value = userInfo.getUserInfo().info;
-}
+};
 
-apiUserInfo.getUserInfo()
+api.getUserInfo()
     .then((data) => {
         userId = data._id
         setUserInfo(data)
@@ -173,21 +136,10 @@ apiUserInfo.getUserInfo()
         console.log(err);
     });
 
-
-apiUserInfo.getUserInfo()
-    .then(data => {
-        setUserInfo(data);
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-
-
 function editAvatar(data) {
     popupAvatarForm.loadingConduction(true, 'Сохранить')
-    apiAvatar.editAvatar(data)
+    api.editAvatar({ avatar: data.link })
         .then((data) => {
-            console.log(data);
             setUserInfo(data)
         })
         .finally(() => {
@@ -196,12 +148,11 @@ function editAvatar(data) {
         })
 };
 
-
 editButton.addEventListener('click', () => {
     popupFormEdit.open();
-    setInputValue(updateFormValue);
+    setInputValue(userInfo.getUserInfo());
     editFormValidation.resetValidation();
-})
+});
 
 addButton.addEventListener('click', () => {
     popupFormAdd.open()
@@ -210,4 +161,4 @@ addButton.addEventListener('click', () => {
 editAvatarButton.addEventListener('click', () => {
     popupAvatarForm.open();
     avatarFormValidation.resetValidation();
-})
+});
