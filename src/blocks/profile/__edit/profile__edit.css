@@ -1,5 +1,5 @@
-.profile__avatar_button {
-    background-image: url(../../../../images/VectorPen.svg);
+.profile__edit {
+    background-image: url(../../../images/VectorPen.svg);
     position: absolute;
     height: 26px;
     width: 26px;
