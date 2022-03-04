@@ -114,7 +114,7 @@ function editUserInfo(data) {
     popupFormEdit.loadingConduction(true, 'Сохранить')
     api.editUserInfo(data)
         .then(data => {
-            setUserInfo(data)
+            userInfo.setUserInfo(data)
         })
         .finally(() => {
             popupFormEdit.close()
@@ -138,7 +138,7 @@ api.getUserInfo()
 
 function editAvatar(data) {
     popupAvatarForm.loadingConduction(true, 'Сохранить')
-    api.editAvatar({ avatar: data.link })
+    api.editAvatar(data)
         .then((data) => {
             setUserInfo(data)
         })
