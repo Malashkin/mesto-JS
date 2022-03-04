@@ -11,15 +11,6 @@ import { editButton, popupEdit, popupAvatar, editAvatarButton, popupAvatarSelect
 
 let userId
 
-const addFormValidation = new FormValidator(selectorsConfiguration, popupAdd);
-addFormValidation.enableValidation();
-
-const editFormValidation = new FormValidator(selectorsConfiguration, popupEdit);
-editFormValidation.enableValidation();
-
-const avatarFormValidation = new FormValidator(selectorsConfiguration, popupAvatar)
-avatarFormValidation.enableValidation();
-
 const popupWithZoom = new PopupWithImage(popupZoom)
 popupWithZoom.setEventListeners();
 
@@ -35,6 +26,15 @@ popupDelete.setEventListeners();
 const popupAvatarForm = new PopupWithForm(popupAvatarSelector, (data) => { editAvatar(data) })
 popupAvatarForm.setEventListeners();
 
+const addFormValidation = new FormValidator(selectorsConfiguration, popupAdd);
+addFormValidation.enableValidation();
+
+const editFormValidation = new FormValidator(selectorsConfiguration, popupEdit);
+editFormValidation.enableValidation();
+
+const avatarFormValidation = new FormValidator(selectorsConfiguration, popupAvatar)
+avatarFormValidation.enableValidation();
+
 const userInfo = new UserInfo(profileNameSelector, profileInfoSelector, profileAvatar)
 
 const api = new Api({
@@ -44,7 +44,6 @@ const api = new Api({
         'Content-Type': 'application/json'
     }
 });
-
 
 function createNewCard(data) {
     const defaultCard = new Card(data, cardsList, userId, handleCardClick, handleLikeClick, handleCardDelete)
