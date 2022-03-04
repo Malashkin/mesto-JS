@@ -45,6 +45,7 @@ const api = new Api({
     }
 });
 
+
 function createNewCard(data) {
     const defaultCard = new Card(data, cardsList, userId, handleCardClick, handleLikeClick, handleCardDelete)
     return defaultCard.generateCard()
