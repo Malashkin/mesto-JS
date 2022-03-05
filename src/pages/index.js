@@ -73,9 +73,9 @@ function editUserInfo(data) {
     api.editUserInfo(data)
         .then(data => {
             userInfo.setUserInfo(data)
+            popupFormEdit.close()
         })
         .finally(() => {
-            popupFormEdit.close()
             popupFormEdit.loadingConduction(false, 'Сохранить')
         })
 };
