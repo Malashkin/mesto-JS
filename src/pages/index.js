@@ -7,7 +7,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
-import { editButton, popupEdit, popupAvatar, editAvatarButton, popupAvatarSelector, profileAvatar, popupDeleteSelector, sectionCards, cardsList, cardList, popupZoom, popupAdd, popupEditSelector, popupAddSelector, profileNameSelector, profileInfoSelector, nameInput, jobInput, addButton, selectorsConfiguration } from '../utils/constatnts.js'
+import { editButton, popupEdit, popupAvatar, editAvatarButton, popupAvatarSelector, profileAvatar, popupDeleteSelector, sectionCards, cardList, popupZoom, popupAdd, popupEditSelector, popupAddSelector, profileNameSelector, profileInfoSelector, nameInput, jobInput, addButton, selectorsConfiguration } from '../utils/constatnts.js'
 
 let userId
 
@@ -23,7 +23,7 @@ popupFormAdd.setEventListeners();
 const popupDelete = new PopupDelete(popupDeleteSelector);
 popupDelete.setEventListeners();
 
-const popupAvatarForm = new PopupWithForm(popupAvatarSelector, (data) => { editAvatar(data) })
+const popupAvatarForm = new PopupWithForm(popupAvatarSelector, editAvatar)
 popupAvatarForm.setEventListeners();
 
 const addFormValidation = new FormValidator(selectorsConfiguration, popupAdd);
@@ -45,21 +45,40 @@ const api = new Api({
     }
 });
 
+
+const cardsList = new Section({
+    renderer: (items) => {
+        const card = createNewCard(items);
+        cardsList.addItem(card);
+    },
+}, sectionCards);
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+    .then(([data, items]) => {
+        userId = data._id;
+        userInfo.setUserInfo(data);
+        cardsList.renderItems(items);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+
 function createNewCard(data) {
-    const defaultCard = new Card(data, cardsList, userId, handleCardClick, handleLikeClick, handleCardDelete)
-    return defaultCard.generateCard()
+    const newCard = new Card(data, userId, cardList, handleCardClick, handleLikeClick, handleCardDelete)
+    return newCard.generateCard()
 };
 
-api.getInitialCards()
-    .then(data => {
-        const initialCards = new Section({
-            items: data,
-            renderer: (item) => {
-                initialCards.addItem(createNewCard(item));
-            }
-        }, sectionCards);
-        initialCards.renderItems();
-    });
+function editUserInfo(data) {
+    popupFormEdit.loadingConduction(true, 'Сохранить')
+    api.editUserInfo(data)
+        .then(data => {
+            userInfo.setUserInfo(data)
+        })
+        .finally(() => {
+            popupFormEdit.close()
+            popupFormEdit.loadingConduction(false, 'Сохранить')
+        })
+};
 
 function handleCardDelete(card) {
     popupDelete.open();
@@ -96,29 +115,11 @@ function saveCard(data) {
     popupFormAdd.loadingConduction(true, 'Сохранить')
     api.createCardApi(data)
         .then(data => {
-            cardList.prepend(createNewCard(data))
-        })
-        .finally(() => {
+            cardsList.addItem(createNewCard(data))
             popupFormAdd.close()
         })
         .finally(() => {
             popupFormAdd.loadingConduction(false, 'Сохранить')
-        })
-};
-
-function setUserInfo(data) {
-    userInfo.setUserInfo(data)
-};
-
-function editUserInfo(data) {
-    popupFormEdit.loadingConduction(true, 'Сохранить')
-    api.editUserInfo(data)
-        .then(data => {
-            userInfo.setUserInfo(data)
-        })
-        .finally(() => {
-            popupFormEdit.close()
-            popupFormEdit.loadingConduction(false, 'Сохранить')
         })
 };
 
@@ -127,23 +128,14 @@ function setInputValue() {
     jobInput.value = userInfo.getUserInfo().info;
 };
 
-api.getUserInfo()
-    .then((data) => {
-        userId = data._id
-        setUserInfo(data)
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-
 function editAvatar(data) {
     popupAvatarForm.loadingConduction(true, 'Сохранить')
     api.editAvatar(data)
         .then((data) => {
-            setUserInfo(data)
+            userInfo.setUserInfo(data)
+            popupAvatarForm.close();
         })
         .finally(() => {
-            popupAvatarForm.close();
             popupAvatarForm.loadingConduction(false, 'Сохранить')
         })
 };
