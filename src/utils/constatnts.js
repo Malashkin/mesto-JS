@@ -5,7 +5,6 @@ export const popupAvatar = document.querySelector('#popupAvatar');
 export const nameInput = document.querySelector('.popup__input_name');
 export const jobInput = document.querySelector('.popup__input_job');
 export const addButton = document.querySelector('.profile__add');
-export const cardList = document.querySelector('.cards');
 export const editAvatarButton = document.querySelector('.profile__avatar');
 export const popupImageSelector = '.popup__image';
 export const popupSubtitleSelector = '.popup__subtitle';
