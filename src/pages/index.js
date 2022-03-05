@@ -7,7 +7,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
-import { editButton, popupEdit, popupAvatar, editAvatarButton, popupAvatarSelector, profileAvatar, popupDeleteSelector, sectionCards, cardsList, popupZoom, popupAdd, popupEditSelector, popupAddSelector, profileNameSelector, profileInfoSelector, nameInput, jobInput, addButton, selectorsConfiguration } from '../utils/constatnts.js'
+import { editButton, popupEdit, popupAvatar, editAvatarButton, popupAvatarSelector, profileAvatar, popupDeleteSelector, sectionCards, cardList, popupZoom, popupAdd, popupEditSelector, popupAddSelector, profileNameSelector, profileInfoSelector, nameInput, jobInput, addButton, selectorsConfiguration } from '../utils/constatnts.js'
 
 let userId
 
@@ -46,10 +46,10 @@ const api = new Api({
 });
 
 
-const cardList = new Section({
+const cardsList = new Section({
     renderer: (items) => {
         const card = createNewCard(items);
-        cardList.addItem(card);
+        cardsList.addItem(card);
     },
 }, sectionCards);
 
@@ -57,14 +57,14 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     .then(([data, items]) => {
         userId = data._id;
         userInfo.setUserInfo(data);
-        cardList.renderItems(items);
+        cardsList.renderItems(items);
     })
     .catch((err) => {
         console.log(err);
     });
 
 function createNewCard(data) {
-    const newCard = new Card(data, userId, cardsList, handleCardClick, handleLikeClick, handleCardDelete)
+    const newCard = new Card(data, userId, cardList, handleCardClick, handleLikeClick, handleCardDelete)
     return newCard.generateCard()
 };
 
@@ -115,7 +115,7 @@ function saveCard(data) {
     popupFormAdd.loadingConduction(true, 'Сохранить')
     api.createCardApi(data)
         .then(data => {
-            cardList.addItem(createNewCard(data))
+            cardsList.addItem(createNewCard(data))
             popupFormAdd.close()
         })
         .finally(() => {
